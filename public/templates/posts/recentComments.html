@@ -1,0 +1,9 @@
+<h2>Recent Comments</h2>
+
+<div>
+	<div ng-repeat='comment in comments | orderBy : "-created_at" '>
+		<a href="#">^</a> <a href="#">v</a>	<span>{{ comment.score }} | </span> <span class='author-name'>{{ comment.author }}</span>
+		<p>{{ comment.body }}</p>
+		<p>created at {{ comment.created_at | date }}</p>
+	</div>
+</div>
