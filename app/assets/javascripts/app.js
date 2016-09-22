@@ -20,14 +20,18 @@ var bulletinBoard = angular.module('bulletinBoard', ['ui.router', 'restangular']
 				.state('posts.index', {
 					url: '/index',
 					resolve: {
-						posts: ['Restangular', function(Restangular) {
-							return Restangular.all('posts').getList();
+						posts: ['postService', function(postService) {
+							return postService.getPosts();
 						}],
 						comments: ['Restangular', function(Restangular) {
 							return Restangular.all('comments').getList();
 						}]
 					},
 					views: {
+						'postForm': {
+							templateUrl: 'templates/posts/form.html',
+							controller: 'postFormCtrl'
+						},
 						'postIndex': {
 							templateUrl: 'templates/posts/index.html',
 							controller: 'postsIndexCtrl'
