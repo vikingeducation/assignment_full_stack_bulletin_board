@@ -1,9 +1,9 @@
 bulletinBoard.factory('postService', 
-	['Restangular', function(Restangular) {
+	['Restangular', '_', '$q', function(Restangular, _, $q) {
 
 	var service = {};
 
-	var _posts;
+	var _posts = [];
 
 	service.createPost = function(params) {
 		return Restangular.all('posts').post({
@@ -21,12 +21,38 @@ bulletinBoard.factory('postService',
 		})
 	}
 
-	service.getPosts = function() {
-		if (_posts) {
-			return _posts;
-		} else {
-			return _posts = Restangular.all('posts').getList().$object;
-		}
+	service.getPost = function(id) {
+		var searchedPost = {};
+		return _fetchPosts()
+			.then(function(posts) {
+
+			// var post = _.findWhere(_posts, {id: id});
+
+			var post;
+			id = parseInt(id);
+
+			for (var i = 0; i < posts.length; i++) {
+				if ( posts[i].id === id ) {
+					post = posts[i];
+					break;
+				}
+			}
+
+			if (post) {
+				console.log(post);
+				return post;
+			} else {
+				return undefined;
+			}
+		})
+	}
+
+	service.getAllPosts = function() {
+		return _fetchPosts();
+	}
+
+	_fetchPosts = function() {
+		return Restangular.all('posts').getList();
 	}
 
 

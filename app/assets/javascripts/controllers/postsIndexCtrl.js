@@ -1,5 +1,8 @@
 bulletinBoard.controller('postsIndexCtrl', 
-	['$scope','posts', function($scope, posts) {
+	['$scope','postService', function($scope, postService) {
 
-		$scope.posts = posts;
+		postService.getAllPosts()
+			.then(function(posts) {
+				$scope.posts = posts;
+			})
 	}])
