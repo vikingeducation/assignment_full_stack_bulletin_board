@@ -1,9 +1,24 @@
 bulletinBoard.factory('postService', 
-	['Restangular', '_', '$q', function(Restangular, _, $q) {
+	['Restangular', '_', '$q', 'commentService', 
+	function(Restangular, _, $q, commentService) {
 
 	var service = {};
 
 	var _posts = [];
+
+	Restangular.extendModel('posts', function(model) {
+		model.createComment = function(params) {
+			params.postId = model.id;
+
+			return commentService.createComment(params)
+				.then(function(comment) {
+					model.comments.push(comment);
+					return comment;
+				})
+		}
+
+		return model;
+	})
 
 	service.createPost = function(params) {
 		return Restangular.all('posts').post({
@@ -15,31 +30,25 @@ bulletinBoard.factory('postService',
 		})
 		.then(function(post) {
 			_posts.push(post);
-			console.log('added new post : ' + post);
+			return _posts;
+
 		}, function(response) {
 			console.error(response);
 		})
 	}
 
+	_fetchPosts = function() {
+		return Restangular.all('posts').getList();
+	}
+
 	service.getPost = function(id) {
-		var searchedPost = {};
 		return _fetchPosts()
 			.then(function(posts) {
 
-			// var post = _.findWhere(_posts, {id: id});
-
-			var post;
 			id = parseInt(id);
-
-			for (var i = 0; i < posts.length; i++) {
-				if ( posts[i].id === id ) {
-					post = posts[i];
-					break;
-				}
-			}
+			var post = _.findWhere(posts, {id: id});
 
 			if (post) {
-				console.log(post);
 				return post;
 			} else {
 				return undefined;
@@ -50,12 +59,6 @@ bulletinBoard.factory('postService',
 	service.getAllPosts = function() {
 		return _fetchPosts();
 	}
-
-	_fetchPosts = function() {
-		return Restangular.all('posts').getList();
-	}
-
-
 
 	return service;
 }])

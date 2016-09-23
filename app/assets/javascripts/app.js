@@ -14,16 +14,11 @@ var bulletinBoard = angular.module('bulletinBoard', ['ui.router', 'restangular']
 			$stateProvider
 				.state('posts', {
 					url: '/posts',
-					resolve: { 
-						comments: ['Restangular', function(Restangular) {
-							return Restangular.all('comments').getList();
-						}]
-					},
 					views: {
 						'': { templateUrl: 'templates/posts.html' },
 						'recentComments@posts': {
 							templateUrl: 'templates/posts/recentComments.html',
-							controller: 'recentCommentsCtrl'
+							controller: 'commentCtrl'
 						}
 					}
 				})
@@ -47,15 +42,19 @@ var bulletinBoard = angular.module('bulletinBoard', ['ui.router', 'restangular']
 				.state('posts.show', {
 					url: '/show/:id',
 					views: {
-						'': { template: "<div ui-view='postShow'></div>" +
-										"<div ui-view='commentForm'></div>" 
-						},
-						'commentForm@posts.show': {
-							template: 'Comment Form here'
+						'': { template: "<div ui-view='postShow'></div>"
 						},
 						'postShow@posts.show': {
 							templateUrl: 'templates/posts/show.html',
 							controller: 'postShowCtrl'
+						},
+						'commentForm@posts.show': {
+							templateUrl: 'templates/posts/commentForm.html',
+							controller: 'commentFormCtrl'
+						},
+						'comments@posts.show': {
+							templateUrl: 'templates/posts/comments.html',
+							controller: 'commentCtrl'
 						}
 					}
 				})

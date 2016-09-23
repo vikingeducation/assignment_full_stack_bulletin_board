@@ -4,7 +4,8 @@ bulletinBoard.controller('postFormCtrl',
 
 		$scope.createPost = function(valid) {
 			if (valid) {
-				postService.createPost($scope.postForm)
+				postService.createPost($scope.postForm);
+				$scope.postForm = {};
 			}
 		}
 	}])
