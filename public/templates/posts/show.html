@@ -4,6 +4,11 @@
 
 	<p>{{ post.body }}</p>
 
-	<p>{{ post.comments }}</p>
 	<hr>
+
+	<div ng-show='post.comments.length' ng-repeat='comment in post.comments | orderBy: "-score"'>
+		<a href="#">^</a> <a href="#">v</a>	<span>{{ comment.score }} | </span> <span class='author-name'>{{ comment.author }}</span>
+		<p>{{ comment.body }}</p>
+		<p>created at {{ comment.created_at | date }}</p>
+	</div>
 </div>
