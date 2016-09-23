@@ -1,0 +1,8 @@
+
+<div>
+	<div ng-repeat='comment in comments | orderBy : "-created_at" | limitTo:5 '>
+		<a ng-click='upVote(comment)'>^</a> <a ng-click='downVote(comment)'>v</a>	<span>{{ comment.score }} | </span> <span class='author-name'>{{ comment.author }}</span>
+		<p>{{ comment.body }}</p>
+		<p>created at {{ comment.created_at | date }}</p>
+	</div>
+</div>

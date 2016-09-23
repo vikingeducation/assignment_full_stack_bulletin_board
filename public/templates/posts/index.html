@@ -1,0 +1,8 @@
+<div>
+	<div ng-repeat='post in posts | orderBy : "-created_at"' class='post-wrapper'>
+		<a ui-sref='posts.show({id: post.id})' class='post-title'><h3>{{ post.title }}</h3></a>
+		<p class='post-body'>{{ post.body }}</p>
+		<small class='post-footer'>By {{ post.author }}, created at {{ post.created_at | date }}</small>
+		<hr>
+	</div>
+</div>
