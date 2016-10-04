@@ -1,5 +1,3 @@
-App.controller("RecentCommentsCtrl", ["$scope", function($scope) {
-
-
-
+App.controller("RecentCommentsCtrl", ["$scope", 'comments', function($scope, comments) {
+  $scope.comments = comments;
 }])

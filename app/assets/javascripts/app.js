@@ -17,19 +17,25 @@ App.config(
       .state('posts', {
         url: '/posts',
         views: {
-          "mainContent" : {
+          "postsIndex": {
             templateUrl: "/templates/posts/index.html",
             controller: "PostsIndexCtrl"
           },
-
-          "recentComments" : {
+          "recentComments": {
             templateUrl: "/templates/comments/recentComments.html",
             controller: "RecentCommentsCtrl"
+          },
+          "postForm": {
+            templateUrl: "/templates/posts/new.html",
+            controller: "PostsNewCtrl"
           }
         },
         resolve: {
           posts: ['PostService', function(PostService) {
             return PostService.getPosts();
+          }],
+          comments: ['CommentsService', function(CommentsService) {
+            return CommentsService.getComments();
           }]
         }
       });
