@@ -12,7 +12,7 @@ Comment.destroy_all
 10.times do |num|
   post = Post.create(author: "GrahamAndDylan#{num}", title: "Post#{num}", content: "This is my post numbered: #{num}")
   5.times do |num| 
-    post.comments.create(author: "Graham+Dylan#{num}", content: "#{post.id} is awesome! This is comment number #{num}")
+    post.comments.create(author: "Graham+Dylan#{num}", content: "#{post.id} is awesome! This is comment number #{num}", votes: num)
   end
 end
 

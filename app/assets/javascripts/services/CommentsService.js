@@ -8,6 +8,12 @@ App.factory('CommentsService', ['Restangular', function(Restangular) {
       });
   };
 
+  var updateVote = function(comment, vote) {
+    comment.patch({votes: comment.votes + vote}).then(function(response) {
+      comment.votes = response.votes;
+    })
+  }
+
 
   var getComments = function() {
     if (_comments.length) {
@@ -18,7 +24,8 @@ App.factory('CommentsService', ['Restangular', function(Restangular) {
   };
 
   return {
-    getComments: getComments
+    getComments: getComments,
+    updateVote: updateVote
   }
 
 }]);

@@ -1,7 +1,7 @@
 <h3>
-  <a href=""><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
-  <a href=""><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></a>
-  | {{ comment.author }}
+  <a ng-click="downVote()" href=""><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+  <a ng-click="upVote()" href=""><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></a>
+  {{ comment.votes }} | {{ comment.author }}
 </h3>
 <p>{{ comment.created_at | date }}</p>
 <p>{{ comment.content }}</p>
