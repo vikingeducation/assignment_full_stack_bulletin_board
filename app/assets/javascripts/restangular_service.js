@@ -18,6 +18,10 @@ function(Restangular,_) {
     return Restangular.all('posts').getList().$object;
   };
 
+  RestangularService.one = function(id) {
+    return Restangular.one('posts', id).get().$object;
+  };
+
   RestangularService.getComments = function() {
     return Restangular.all('comments').getList().$object;
   };

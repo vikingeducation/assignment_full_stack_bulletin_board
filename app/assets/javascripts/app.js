@@ -25,6 +25,18 @@ function($stateProvider, $urlRouterProvider, RestangularProvider){
           templateUrl: '/templates/comments/recent_comments.html'
         }
       }
+    })
+    .state('Posts.show',  {
+      url: '/:id',
+      views: {
+        '@': {
+          templateUrl: '/templates/posts/show.html',
+          controller: 'PostsShowCtrl'
+        }
+      },
+      onEnter: function() {
+        console.log('this is firing (SHOW)');
+      }
     });
 }]);
 
