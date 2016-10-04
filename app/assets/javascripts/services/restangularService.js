@@ -8,8 +8,13 @@ app.factory("restangularService", ["Restangular", function(Restangular) {
     return Restangular.one('posts', id).get();
   };
 
+  var getRecentComments = function(){
+    return Restangular.all("comments").getList();
+  }
+
   return {
     getAllPosts: getAllPosts,
-    getPost: getPost
+    getPost: getPost,
+    getRecentComments: getRecentComments
   };
 }]);

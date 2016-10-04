@@ -16,6 +16,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         "@": {
           templateUrl: '/templates/posts/index.html',
           controller: 'postsIndexCtrl'
+        },
+        "recentComments@": {
+          templateUrl: '/templates/comments/index.html',
+          controller: 'commentsIndexCtrl'
         }
       }
     })

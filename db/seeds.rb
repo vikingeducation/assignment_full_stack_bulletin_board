@@ -8,7 +8,10 @@
 
 
 20.times do
-  Post.create({title: Faker::Lorem.sentence,
+  post = Post.create({ title: Faker::Lorem.sentence,
                 body: Faker::Lorem.paragraph,
                 author: Faker::Name.name } )
+  post.comments.create({ author: Faker::Name.name,
+                        rating: 0,
+                        text: Faker::Lorem.paragraph})
 end
