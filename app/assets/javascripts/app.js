@@ -34,16 +34,31 @@ app.config([
 
     $urlRouterProvider.otherwise('/posts');
 
-    $stateProvider.state('posts', {
-      url: '/posts',
+    $stateProvider.state('main', {
+      abstract: true,
+      url: '/main',
       views: {
-        'posts': {
-          templateUrl: 'templates/posts/index.html',
-          controller: 'PostsCtrl'
-        },
         'recentComments': {
           templateUrl: 'templates/comments/recent.html',
           controller: 'RecentCommentsCtrl'
+        }
+      }
+    })
+    .state('main.posts', {
+      url: '/posts',
+      views: {
+        'posts@content': {
+          templateUrl: 'templates/posts/index.html',
+          controller: 'PostsCtrl'
+        }
+      }
+    })
+    .state('main.post', {
+      url: '/post/:id',
+      views: {
+        'post@content': {
+          templateUrl: 'templates/posts/show.html',
+          controller: 'ShowPostCtrl'
         }
       }
     });
