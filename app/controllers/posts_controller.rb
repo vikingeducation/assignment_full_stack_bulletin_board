@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     @posts = Post.all
 
     respond_to do |format|
-      format.json { render json: @posts.to_json, status: 200 }
+      format.json { render json: @posts.to_json(include: :comments), status: 200 }
     end
   end
 

@@ -7,7 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Post.destroy_all
+Comment.destroy_all
 
 5.times do |index|
-  Post.create(author: "Author #{index}", title: "Title #{index}", body: "Body Text #{index}")
+  post = Post.create(author: "Author #{index}", title: "Title #{index}", body: "Body Text #{index}")
+  5.times do |j|
+    post.comments.create(author: "Author #{j}", text: "Comment ##{j} on Post #{index}")
+  end
 end
