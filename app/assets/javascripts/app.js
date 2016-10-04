@@ -16,8 +16,17 @@ App.config(
     $stateProvider
       .state('posts', {
         url: '/posts',
-        templateUrl: '/templates/posts/index.html',
-        controller: 'PostsIndexCtrl',
+        views: {
+          "mainContent" : {
+            templateUrl: "/templates/posts/index.html",
+            controller: "PostsIndexCtrl"
+          },
+
+          "recentComments" : {
+            templateUrl: "/templates/comments/recentComments.html",
+            controller: "RecentCommentsCtrl"
+          }
+        },
         resolve: {
           posts: ['PostService', function(PostService) {
             return PostService.getPosts();
