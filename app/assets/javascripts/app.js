@@ -12,9 +12,19 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state("main", {
       url: "/",
-      templateUrl: "/templates/index.html",
-      controller: "PostsCtrl"
+      views: {
+        "": {
+          templateUrl: "/templates/posts/index.html",
+          controller: 'PostsCtrl'
+        },
+        "recent-comments": {
+          templateUrl: "/templates/recentComments.html",
+          controller: 'PostsCtrl'
+        }
+      }
     });
+
+    // .state("posts.show")
 });
 
 myApp.config(['RestangularProvider', function(RestangularProvider){

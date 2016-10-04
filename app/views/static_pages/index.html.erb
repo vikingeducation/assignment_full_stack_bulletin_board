@@ -2,6 +2,14 @@
   ng-app="myApp"
 <% end %>
 
-<ui-view></ui-view>
+<div class="row">
+<h1>Full Stack Bulletin Board</h1>
 
-asdfasf
+  <div class="col-md-4">
+    <div ui-view="recent-comments"></div>
+  </div>
+
+  <div class="col-md-8">
+    <ui-view></ui-view>
+  </div>
+</div>
