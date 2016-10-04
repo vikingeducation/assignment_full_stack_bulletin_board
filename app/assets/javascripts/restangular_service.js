@@ -8,6 +8,10 @@ function(Restangular,_) {
     return Restangular.all('posts').getList().$object;
   };
 
+  RestangularService.getComments = function() {
+    return Restangular.all('comments').getList().$object;
+  };
+
   return RestangularService;
 
 }]);

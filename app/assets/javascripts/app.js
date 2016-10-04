@@ -17,9 +17,6 @@ function($stateProvider, $urlRouterProvider, RestangularProvider){
     .state('Posts', {
       url: '/posts',
       controller: 'PostsCtrl',
-      onEnter: function(){
-        console.log("this is firing");
-      },
       views: {
         '': {
           templateUrl: '/templates/posts/index.html',

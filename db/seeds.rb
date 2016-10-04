@@ -24,12 +24,13 @@ puts "Seeding posts.."
 end
 
 puts "Seeding comments"
-5.times do |n|
+10.times do |n|
   new_comment = {
     author: Faker::Name.first_name,
-    body: Faker::Lorem.sentence(3)
+    body: Faker::Lorem.sentence(3),
+    score: 1
   }
-  Post.all[n].comments.build(new_comment).save
+  Post.all[n % 5].comments.build(new_comment).save
 end
 
 puts "Finished!"
