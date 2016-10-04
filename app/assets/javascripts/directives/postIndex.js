@@ -1,4 +1,4 @@
-App.directive("postsIndex",[ function() {
+App.directive("postsIndex", [function() {
 
   return {
     restrict: "E",

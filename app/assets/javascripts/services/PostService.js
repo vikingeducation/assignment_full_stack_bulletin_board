@@ -22,9 +22,19 @@ App.factory('PostService', ['Restangular', function(Restangular) {
     }
   };
 
+  var find = function(id) {
+    id = Number(id);
+    for (var i = 0; i < _posts.length; i++) {
+      if (_posts[i].id === id) {
+        return _posts[i];
+      }
+    }
+  }
+
   return {
     getPosts: getPosts,
-    createPost: createPost
+    createPost: createPost,
+    find: find
   }
 
 }]);

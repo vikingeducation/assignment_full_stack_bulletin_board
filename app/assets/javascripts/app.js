@@ -16,18 +16,14 @@ App.config(
     $stateProvider
       .state('posts', {
         url: '/posts',
+        abstract: true,
         views: {
-          "postsIndex": {
-            templateUrl: "/templates/posts/index.html",
-            controller: "PostsIndexCtrl"
+          "mainContent": {
+            templateUrl: "/templates/mainContent.html",
           },
           "recentComments": {
             templateUrl: "/templates/comments/recentComments.html",
             controller: "RecentCommentsCtrl"
-          },
-          "postForm": {
-            templateUrl: "/templates/posts/new.html",
-            controller: "PostsNewCtrl"
           }
         },
         resolve: {
@@ -38,9 +34,28 @@ App.config(
             return CommentsService.getComments();
           }]
         }
+      })
+      .state('posts.index', {
+        url: '',
+        views: {
+          'display': {
+            templateUrl: "/templates/posts/index.html",
+            controller: 'PostsIndexCtrl'
+          },
+          'form': {
+            templateUrl: "/templates/posts/new.html",
+            controller: 'PostsNewCtrl'
+          }
+        }
+      })
+      .state('posts.show', {
+        url: '/:id',
+        views: {
+          'display': {
+            templateUrl: '/templates/posts/show.html',
+            controller: 'PostsShowCtrl'
+          }
+        }
       });
-
-
-
 
 }]);
