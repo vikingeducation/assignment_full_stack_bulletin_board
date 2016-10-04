@@ -8,6 +8,12 @@ App.factory('PostService', ['Restangular', function(Restangular) {
       });
   };
 
+  var createPost = function(postData) {
+    Restangular.all("posts").post(postData).then(function(newPost){
+      _posts.push(newPost);
+    });
+  };
+
   var getPosts = function() {
     if (_posts.length) {
       return _posts;
@@ -17,7 +23,8 @@ App.factory('PostService', ['Restangular', function(Restangular) {
   };
 
   return {
-    getPosts: getPosts
+    getPosts: getPosts,
+    createPost: createPost
   }
 
 }]);

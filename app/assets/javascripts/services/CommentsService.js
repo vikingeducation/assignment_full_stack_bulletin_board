@@ -8,6 +8,7 @@ App.factory('CommentsService', ['Restangular', function(Restangular) {
       });
   };
 
+
   var getComments = function() {
     if (_comments.length) {
       return _comments;
