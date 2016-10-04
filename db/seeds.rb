@@ -14,8 +14,7 @@ Comment.destroy_all
 
   current_post = Post.create(author: Faker::Name.name, body: Faker::Lorem.sentence, title: Faker::Lorem.sentence, date: DateTime.now )
   5.times do
-  	current_post.comments.create(author: Faker::Name.name, body: Faker::Lorem.sentence, date: rand(1.years).ago, voteCount: 0)
+  	current_post.comments.create(author: Faker::Name.name, body: Faker::Lorem.sentence, date: rand(1.years).seconds.ago, voteCount: 0)
   end
 
 end
-

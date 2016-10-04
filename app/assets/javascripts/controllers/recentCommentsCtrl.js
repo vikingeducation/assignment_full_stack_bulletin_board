@@ -1,8 +1,8 @@
 'use strict';
 app.controller('RecentCommentsCtrl', ['$scope', 'CommentsService', '_', function($scope, CommentsService, _){
 
-	CommentsService.getRecentComments().then(function(comments){
-			$scope.comments = _.sortBy(comments, 'created_at');
-			$scope.recentComments = _.first($scope.comments, 10);
+	CommentsService.getComments().then(function(comments){
+			$scope.comments = _.sortBy(comments, 'date').reverse();
+			$scope.recentComments = _.take($scope.comments, 5);
 	});
 }]);

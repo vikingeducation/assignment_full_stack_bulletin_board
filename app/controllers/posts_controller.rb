@@ -8,4 +8,14 @@ class PostsController < ApplicationController
 
   def show
   end
+
+  def create
+    @post = Post.new(postParams)
+    @post.save
+  end
+
+private
+  def postParams
+    params.require(:post).permit(:author, :title, :date, :body)
+  end
 end

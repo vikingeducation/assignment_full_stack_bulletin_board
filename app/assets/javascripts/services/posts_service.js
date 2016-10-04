@@ -8,6 +8,11 @@ app.factory('PostsService', ['Restangular', function(Restangular){
 
   // obj.getPost = function(){}
 
-  return obj
+  obj.createPost = function(newPost) {
+    var postObj = {post: newPost}
+    Restangular.all('posts').post(postObj)
+  }
+
+  return obj;
 
 }]);
