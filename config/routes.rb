@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   scope 'api' do
     scope 'v1' do
       resources :posts do
-        resources :comments, only: [:index]
+        resources :comments, only: [:index, :update]
       end
       get 'comments/all', to: 'comments#all' 
     end

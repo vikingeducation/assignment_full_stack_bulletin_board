@@ -12,7 +12,8 @@
 </form>
 
 <div ng-repeat="comment in comments">
-	<p>{{comment.voteCount}} | {{comment.author}} </p>
+	<p><span class="glyphicon glyphicon-chevron-up" ng-click="upvote(comment)"> </span>
+  <span class="glyphicon glyphicon-chevron-down" ng-click="downvote(comment)"> </span>{{comment.voteCount}} | {{comment.author}} </p>
 	<p>Commented on {{comment.date | date}}</p>
 	<p>{{comment.body}}</p>
 </div>
