@@ -19,7 +19,9 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         },
         "recent-comments": {
           templateUrl: "/templates/recentComments.html",
-          controller: 'PostsCtrl'
+          controller: function($scope, commentsService) {
+            $scope.comments = commentsService.all();
+          }
         }
       }
     });
