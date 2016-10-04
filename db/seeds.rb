@@ -5,3 +5,31 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+puts "Destroying posts.."
+Post.destroy_all
+puts "Destroying comments.."
+Comment.destroy_all
+
+
+puts "Seeding posts.."
+5.times do |n|
+  new_post = {
+    title: Faker::Book.title,
+    author: Faker::Name.first_name,
+    body: Faker::Lorem.sentence(3)
+  }
+  Post.create!(new_post)
+end
+
+puts "Seeding comments"
+5.times do |n|
+  new_comment = {
+    author: Faker::Name.first_name,
+    body: Faker::Lorem.sentence(3)
+  }
+  Post.all[n].comments.build(new_comment).save
+end
+
+puts "Finished!"
