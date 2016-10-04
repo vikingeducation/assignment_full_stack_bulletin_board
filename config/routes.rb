@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+
+  root "static_pages#index"
+
+  resource "static_pages"
+
+  scope "api" do
+    scope "v1" do 
+      resources :posts, only: [:index]
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
