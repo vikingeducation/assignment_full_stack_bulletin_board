@@ -5,7 +5,20 @@ function ($scope, RestangularService) {
   $scope.hello = "HELLO WORLD";
   $scope.postForm = {};
 
-  $scope.posts = RestangularService.getPosts();
+  $scope.data = {
+    posts: RestangularService.getPosts()
+  };
+
+  $scope.sendPost = function () {
+    console.log('this is firing');
+    $scope.data.posts.create($scope.postForm);
+    $scope.refreshPosts();
+  };
+
+  $scope.refreshPosts = function() {
+    $scope.data.posts = RestangularService.getPosts();
+  };
+
   $scope.comments = RestangularService.getComments();
 
 }]);

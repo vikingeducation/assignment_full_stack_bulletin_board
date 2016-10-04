@@ -7,4 +7,23 @@ class PostsController < ApplicationController
     end
   end
 
+  def create
+    @post = Post.new(post_params)
+    if @post.save
+      respond_to do |format|
+        format.json { render json: @post.to_json }
+      end
+    end
+  end
+
+  private
+
+    def post_params
+      params.require(:post).permit(
+        :author,
+        :title,
+        :body
+      )
+    end
+
 end
