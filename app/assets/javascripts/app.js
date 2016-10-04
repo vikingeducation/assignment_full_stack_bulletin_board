@@ -40,6 +40,10 @@ app.config([
         'posts': {
           templateUrl: 'templates/posts/index.html',
           controller: 'PostsCtrl'
+        },
+        'recentComments': {
+          templateUrl: 'templates/comments/recent.html',
+          controller: 'RecentCommentsCtrl'
         }
       }
     });
