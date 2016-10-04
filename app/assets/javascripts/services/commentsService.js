@@ -3,6 +3,14 @@ app.factory('CommentsService', ['Restangular', function(Restangular){
 
 	var obj = {};
 
+	obj.createComment = function(commentData) {
+		commentData.date = new Date();
+		var newComment = {
+			comment: commentData
+		}
+		return Restangular.all('comments').post(newComment);
+	}
+
 	obj.getAllComments = function() {
 		return Restangular.all('comments').customGET('all');
 	};
@@ -24,6 +32,7 @@ app.factory('CommentsService', ['Restangular', function(Restangular){
 		comment.voteCount -= 1;
 		return comment.put();
 	};
+
 
 	return obj;
 

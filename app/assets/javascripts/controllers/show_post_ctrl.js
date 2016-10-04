@@ -27,6 +27,17 @@ app.controller('ShowPostCtrl', ['$stateParams', '$scope', 'PostsService', 'Comme
   	});
   });
 
+  $scope.$on('comment.created', function(){
+  	$scope.post.getList('comments').then(function(comments){
+  		angular.copy(comments, $scope.comments);
+  	});
+  });
+
+  $scope.createComment = function(form) {
+    $scope.post.createComment(form).then(function() {
+      $rootScope.$broadcast('comment.created')
+    })
+  }
   // $scope.comments = CommentsService.getPostComments(id).$object;
 
 }]);

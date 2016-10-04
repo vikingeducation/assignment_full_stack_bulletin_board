@@ -1,5 +1,19 @@
 class CommentsController < ApplicationController
 
+  def create
+    @post = Post.find(params[:comment][:post_id])
+    @comment = @post.comments.build(comment_params)
+    respond_to do |format|
+      if @comment.save
+        format.html { render :index }
+        format.json { render json: @comment }
+      else
+        format.json { render json: {error: @comment.errors.full_messages.join(', ')} }
+        format.html { render :index }
+      end
+    end
+  end
+
   def index
     @post = Post.find(params[:post_id])
     @comments = @post.comments.all

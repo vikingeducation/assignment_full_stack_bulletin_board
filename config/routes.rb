@@ -12,7 +12,8 @@ Rails.application.routes.draw do
       resources :posts do
         resources :comments, only: [:index, :update]
       end
-      get 'comments/all', to: 'comments#all' 
+      resources :comments, only: [:create]
+      get 'comments/all', to: 'comments#all'
     end
   end
 end

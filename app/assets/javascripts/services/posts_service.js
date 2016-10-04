@@ -1,5 +1,5 @@
 "use strict";
-app.factory('PostsService', ['Restangular', function(Restangular){
+app.factory('PostsService', ['Restangular', 'CommentsService', function(Restangular, CommentsService){
 
   var obj = {};
 
@@ -15,6 +15,19 @@ app.factory('PostsService', ['Restangular', function(Restangular){
     var postObj = {post: newPost};
     return Restangular.all('posts').post(postObj);
   };
+
+  Restangular.extendModel('posts', function(model){
+		model.createComment = function(params) {
+      params.post_id = model.id;
+      return CommentsService.createComment(params)
+        .then(function(response){
+          console.log("added comment")
+          return response;
+        });
+    };
+    return model;
+	});
+
 
   return obj;
 
