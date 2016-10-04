@@ -14,6 +14,17 @@ function(Restangular,_) {
     });
   }
 
+  function _createComment(commentParams) {
+    return Restangular.all('comments').post({
+      comment: {
+        author: commentParams.author,
+        body: commentParams.body,
+        post_id: commentParams.post_id,
+        score: commentParams.score
+      }
+    })
+  };
+
   RestangularService.getPosts = function () {
     return Restangular.all('posts').getList().$object;
   };
@@ -30,6 +41,19 @@ function(Restangular,_) {
   Restangular.extendCollection('posts', function(collection) {
     collection.create = _createPost;
     return collection;
+  });
+
+  Restangular.extendModel('posts', function(model){
+    model.createComment = function(params) {
+      params.post_id = model.id;
+      params.score = 1;
+      return _createComment(params)
+        .then(function(response) {
+          console.log(response)
+          model.comments.push(response);
+        })
+    }
+    return model;
   });
 
   return RestangularService;

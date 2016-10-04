@@ -5,7 +5,7 @@
 <p>{{ post.body }}</p>
 
 
-<form>
+<form ng-submit="createComment()">
   <label>
     Author
     <input type='text' ng-model='commentForm.author'>
@@ -17,4 +17,17 @@
   </label><br>
 
   <button type='submit'>Submit</button>
-</form>
+</form><br><br>
+
+<div ng-repeat="comment in post.comments | orderBy: '-score'">
+  <p>
+    <span class="glyphicon glyphicon-arrow-up"></span>
+    <span class="glyphicon glyphicon-arrow-down"></span>
+    <span>{{comment.score}}</span> | 
+    <span>{{comment.author}}</span>
+  </p>
+  <small>Commented on {{comment.created_at | date}}</small>
+  <p>{{comment.body}}</p><hr>
+</div>
+
+

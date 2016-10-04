@@ -28,7 +28,7 @@ puts "Seeding comments"
   new_comment = {
     author: Faker::Name.first_name,
     body: Faker::Lorem.sentence(3),
-    score: 1
+    score: [1,2,3,4,5].sample
   }
   Post.all[n % 5].comments.build(new_comment).save
 end

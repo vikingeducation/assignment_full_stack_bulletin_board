@@ -8,4 +8,19 @@ class CommentsController < ApplicationController
     end
   end
 
+  def create
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      respond_to do |format|
+        format.json { render json: @comment.to_json }
+      end
+    end
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:author, :body, :post_id, :score)
+  end
+
 end
