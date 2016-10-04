@@ -1,4 +1,4 @@
-myApp.factory('PostsService', ['Restangular', '_', function(Restangular, _){
+myApp.factory('postsService', ['Restangular', '_', function(Restangular, _){
 
   var _posts;
 
@@ -27,11 +27,11 @@ myApp.factory('PostsService', ['Restangular', '_', function(Restangular, _){
 
 
 
-  PostsService.create = function(params) {
+  postsService.create = function(params) {
     return _createPost(params);
   };
 
-  PostsService.all = function() {
+  postsService.all = function() {
     _posts = Restangular.all('posts').getList().$object;
     return _posts;
   };

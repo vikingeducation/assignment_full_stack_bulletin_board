@@ -1,5 +1,9 @@
 var myApp = angular.module("myApp", ["ui.router", "restangular"])
 
+myApp.factory("_", ["$window", function($window) {
+  return $window._
+}])
+
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
 
@@ -9,9 +13,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     .state("main", {
       url: "/",
       templateUrl: "/templates/index.html",
-      controller: function($scope) {
-        console.log("controller");
-      }
+      controller: "PostsCtrl"
     });
 });
 
