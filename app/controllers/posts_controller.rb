@@ -9,4 +9,24 @@ class PostsController < ApplicationController
     end
   end
 
+  def create
+    @post = Post.new(post_params)
+    if @post.save 
+      respond_to do |format|
+        format.json { render json: @post.to_json, status: 200 }
+      end
+    else
+      respond_to do |format|
+        format.json {puts "You messed up"}
+      end
+    end
+  end
+
+
+  private
+
+  def post_params
+    params.require(:post).permit(:author, :body, :title)
+  end
+
 end

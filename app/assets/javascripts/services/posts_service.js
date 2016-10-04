@@ -26,7 +26,6 @@ myApp.factory('postsService', ['Restangular', '_', function(Restangular, _){
   });
 
 
-
   postsService.create = function(params) {
     return _createPost(params);
   };

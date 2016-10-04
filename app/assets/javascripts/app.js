@@ -24,7 +24,17 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
           }
         }
       }
-    });
+    })
+
+    .state("post", {
+      url: "/post/:id",
+      view: {
+        "@": {
+          templateUrl: "/templates/posts/show.html",
+          controller: "PostsCtrl"
+        }
+      }
+    })
 
     // .state("posts.show")
 });
