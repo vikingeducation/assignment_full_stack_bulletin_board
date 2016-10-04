@@ -1,11 +1,11 @@
-app = angular.module("bulletin", ["ui.router", 'restangular', 'Devise'])
+app = angular.module("bulletin", ["ui.router", 'restangular'])
 
-MyApp.factory('_', ['$window', function(){
+app.factory('_', ['$window', function(){
   return $window._;
 }]);
 
 
-MyApp.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/posts');
 
@@ -13,16 +13,25 @@ MyApp.config(function($stateProvider, $urlRouterProvider) {
     .state('posts', {
       url: "/posts",
       views: {
-        "": {
-          templateUrl: '/templates',
+        "@": {
+          templateUrl: '/templates/posts/index.html',
           controller: 'postsIndexCtrl'
         }
       }
     })
+    .state('posts.show', {
+      url: '/:id',
+      views: {
+        "@": {
+          templateUrl: '/templates/posts/show.html',
+          controller: 'postsShowCtrl'
+        }
+      }
+    });
 
-})
+});
 
-MyApp.config(
+app.config(
   ["$httpProvider",
   function($httpProvider) {
   var token = $('meta[name=csrf-token]')
@@ -34,7 +43,7 @@ MyApp.config(
 }]);
 
 // Restangular config
-MyApp.config(
+app.config(
   ['RestangularProvider',
   function(RestangularProvider) {
 
