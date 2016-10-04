@@ -13,14 +13,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('posts', {
       url: "/posts",
       views: {
-        "": {
+        "@": {
           templateUrl: '/templates/posts/index.html',
           controller: 'postsIndexCtrl'
         }
       }
     })
+    .state('posts.show', {
+      url: '/:id',
+      views: {
+        "@": {
+          templateUrl: '/templates/posts/show.html',
+          controller: 'postsShowCtrl'
+        }
+      }
+    });
 
-})
+});
 
 app.config(
   ["$httpProvider",
