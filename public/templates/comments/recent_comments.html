@@ -1,10 +1,10 @@
 <h2>Recent Comments</h2>
 
-<div ng-repeat="comment in comments | orderBy: '-created_at'">
+<div ng-repeat="comment in commentInfo.comments | orderBy: '-created_at'">
   <p>
     <span class="glyphicon glyphicon-arrow-up"></span>
     <span class="glyphicon glyphicon-arrow-down"></span>
-    <span>{{comment.score}}</span> | 
+    <span>{{comment.score}}</span> |
     <span>{{comment.author}}</span>
   </p>
   <small>Commented on {{comment.created_at | date}}</small>

@@ -1,6 +1,6 @@
 BulletinBoard.controller('PostsShowCtrl',
-['$scope', 'RestangularService', '$stateParams',
-function($scope, RestangularService, $stateParams) {
+['$scope', 'RestangularService', '$stateParams', '$rootScope',
+function($scope, RestangularService, $stateParams, $rootScope) {
 
   $scope.post = RestangularService.one($stateParams.id);
 
@@ -10,7 +10,9 @@ function($scope, RestangularService, $stateParams) {
         $scope.commentForm = {};
       }).catch(function(reason){
         console.log(reason);
-      })
-  }
+      });
+  };
+
+  $rootScope.$broadcast('comment.create');
 
 }]);

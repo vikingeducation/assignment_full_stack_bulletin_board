@@ -19,6 +19,18 @@ function ($scope, RestangularService) {
     $scope.data.posts = RestangularService.getPosts();
   };
 
-  $scope.comments = RestangularService.getComments();
+
+  $scope.commentInfo = {
+    comments: RestangularService.getComments()
+  };
+  // $scope.comments = RestangularService.getComments();
+
+  $scope.$on('comment.create', function() {
+    console.log('from the listener');
+
+    $scope.commentInfo.comments = RestangularService.getComments();
+    // $scope.comments = RestangularService.getComments();
+
+  });
 
 }]);

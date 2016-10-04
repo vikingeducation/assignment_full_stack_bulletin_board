@@ -22,8 +22,8 @@ function(Restangular,_) {
         post_id: commentParams.post_id,
         score: commentParams.score
       }
-    })
-  };
+    });
+  }
 
   RestangularService.getPosts = function () {
     return Restangular.all('posts').getList().$object;
@@ -37,6 +37,10 @@ function(Restangular,_) {
     return Restangular.all('comments').getList().$object;
   };
 
+  // RestangularService.updateCommentInfo = function(commentInfo) {
+  //   commentInfo.comments = RestangularService.getComments();
+  // };
+
   // Extend collection to give more functionality, like creating posts.
   Restangular.extendCollection('posts', function(collection) {
     collection.create = _createPost;
@@ -49,10 +53,10 @@ function(Restangular,_) {
       params.score = 1;
       return _createComment(params)
         .then(function(response) {
-          console.log(response)
+          console.log(response);
           model.comments.push(response);
-        })
-    }
+        });
+    };
     return model;
   });
 
