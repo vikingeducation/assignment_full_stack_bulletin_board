@@ -7,7 +7,9 @@ app.factory('PostsService', ['Restangular', function(Restangular){
     return Restangular.all('posts').getList();
   };
 
-  // obj.getPost = function(){}
+  obj.getPost = function(id){
+    return Restangular.one('posts', id).get();
+  }
 
   obj.createPost = function(newPost) {
     var postObj = {post: newPost};

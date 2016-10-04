@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   get 'static_pages/index'
   scope 'api' do
     scope 'v1' do
-      resources :posts
-      resources :comments
+      resources :posts do
+        resources :comments, only: [:index]
+      end
+      get 'comments/all', to: 'comments#all' 
     end
   end
 end

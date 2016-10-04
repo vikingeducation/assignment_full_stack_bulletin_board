@@ -32,7 +32,7 @@ app.config([
   '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/posts');
+    $urlRouterProvider.otherwise('/main/posts');
 
     $stateProvider.state('main', {
       abstract: true,
@@ -47,7 +47,7 @@ app.config([
     .state('main.posts', {
       url: '/posts',
       views: {
-        'posts@content': {
+        'content@': {
           templateUrl: 'templates/posts/index.html',
           controller: 'PostsCtrl'
         }
@@ -56,7 +56,7 @@ app.config([
     .state('main.post', {
       url: '/post/:id',
       views: {
-        'post@content': {
+        'content@': {
           templateUrl: 'templates/posts/show.html',
           controller: 'ShowPostCtrl'
         }
