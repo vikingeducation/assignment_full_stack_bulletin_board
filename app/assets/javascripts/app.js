@@ -17,9 +17,16 @@ function($stateProvider, $urlRouterProvider, RestangularProvider){
     .state('Posts', {
       url: '/posts',
       controller: 'PostsCtrl',
-      templateUrl: '/templates/posts/index.html',
       onEnter: function(){
         console.log("this is firing");
+      },
+      views: {
+        '': {
+          templateUrl: '/templates/posts/index.html',
+        },
+        'recentComments': {
+          templateUrl: '/templates/comments/recent_comments.html'
+        }
       }
     });
 }]);
