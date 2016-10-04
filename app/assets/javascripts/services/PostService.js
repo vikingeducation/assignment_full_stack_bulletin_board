@@ -4,6 +4,9 @@ App.factory('PostService', ['Restangular', function(Restangular) {
   var _populatePosts = function() {
     return Restangular.all('posts').getList()
       .then(function(postsArr) {
+        for (var i =0; i < postsArr.length; i++) {
+          postsArr[i].comments = Restangular.restangularizeCollection(null, postsArr[i].comments, 'comments');
+        }
         return angular.copy(postsArr, _posts);
       });
   };

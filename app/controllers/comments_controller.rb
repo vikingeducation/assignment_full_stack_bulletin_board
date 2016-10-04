@@ -7,9 +7,22 @@ class CommentsController < ApplicationController
     end
   end
 
+  def create
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      respond_to do |format|
+        format.json { render json: @comment }
+      end
+    else
+      respond_to do |format|
+        format.json {}
+      end
+    end
+  end
+
   def update
     @comment = Comment.find(params[:id])
-    if @comment.update(comment_params) 
+    if @comment.update(comment_params)
       respond_to do |format|
         format.json { render json: @comment }
       end

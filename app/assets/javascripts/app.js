@@ -42,7 +42,7 @@ App.config(
             templateUrl: "/templates/posts/index.html",
             controller: 'PostsIndexCtrl'
           },
-          'form': {
+          'newPost': {
             templateUrl: "/templates/posts/new.html",
             controller: 'PostsNewCtrl'
           }
@@ -54,6 +54,14 @@ App.config(
           'display': {
             templateUrl: '/templates/posts/show.html',
             controller: 'PostsShowCtrl'
+          },
+          'newComment': {
+            templateUrl: '/templates/comments/new.html',
+            controller: 'CommentsNewCtrl'
+          },
+          'indexComment': {
+            templateUrl: '/templates/comments/index.html',
+            controller: 'CommentsIndexCtrl'
           }
         }
       });

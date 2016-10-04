@@ -4,13 +4,13 @@ class PostsController < ApplicationController
     @posts = Post.all
 
     respond_to do |format|
-      format.json {render json: @posts}
+      format.json {render json: @posts, include: :comments}
     end
 
   end
 
 
-  def create 
+  def create
 
     @post = Post.new(post_params)
     if @post.save
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
         format.json {render json: @post}
       end
     else
-      respond_to do |format| 
+      respond_to do |format|
         format.json {}
       end
     end
