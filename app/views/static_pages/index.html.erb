@@ -1,0 +1,15 @@
+<%= content_for(:angular_app) do %>
+  ng-app="BulletinBoard"
+  ng-controller="PostsCtrl"
+<% end %>
+<div class="container">
+  <h1>Welcome</h1>
+  <div class="row">
+    <div class="col-xs-4">
+      <div ui-view='recentComments'></div>
+    </div>
+    <div class="col-xs-8">
+      <div ui-view></div>
+    </div>
+  </div>
+</div>

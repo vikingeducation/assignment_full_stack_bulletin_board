@@ -1,0 +1,23 @@
+<h2>Posts</h2>
+
+<h3>Create a Post</h3>
+<form ng-submit="sendPost()">
+  <label>Title
+  <input type="text" name="title" ng-model="postForm.title">
+  </label>
+  <br>
+  <label>Author
+  <input type="text" name="author" ng-model="postForm.author">
+  </label>
+  <br>
+  <label>Post
+  <textarea name="post" ng-model="postForm.body"></textarea>
+  </label>
+  <br>
+  <input type="submit">
+</form>
+<br>
+<div ng-repeat="post in data.posts | orderBy:'-created_at'">
+  <h3><a ui-sref='Posts.show({id: post.id})'>{{ post.title }}</a></h3>
+  <p>Posted on {{ post.created_at}} by {{ post.author }}</p>
+</div>
