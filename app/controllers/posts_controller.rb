@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       respond_to do |format|
-        format.json {render json: @post}
+        format.json {render json: @post, include: :comments}
       end
     else
       respond_to do |format|
