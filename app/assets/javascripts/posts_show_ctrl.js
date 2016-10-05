@@ -8,11 +8,15 @@ function($scope, RestangularService, $stateParams, $rootScope) {
     $scope.post.createComment($scope.commentForm)
       .then(function(){
         $scope.commentForm = {};
+        $rootScope.$broadcast('comment.create');
       }).catch(function(reason){
         console.log(reason);
       });
   };
 
-  $rootScope.$broadcast('comment.create');
+  $scope.upvote = function(comment) {
+    console.log(comment);
+    $scope.post.upvoteForComment();
+  };
 
 }]);

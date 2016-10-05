@@ -19,6 +19,11 @@ function ($scope, RestangularService) {
     $scope.data.posts = RestangularService.getPosts();
   };
 
+  $scope.upvote = function(comment) {
+    console.log(comment);
+    comment.upvote();
+  };
+
 
   $scope.commentInfo = {
     comments: RestangularService.getComments()

@@ -21,7 +21,7 @@
 
 <div ng-repeat="comment in post.comments | orderBy: '-score'">
   <p>
-    <span class="glyphicon glyphicon-arrow-up"></span>
+    <span ng-click="upvote(comment)" class="glyphicon glyphicon-arrow-up"></span>
     <span class="glyphicon glyphicon-arrow-down"></span>
     <span>{{comment.score}}</span> |
     <span>{{comment.author}}</span>

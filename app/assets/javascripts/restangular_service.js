@@ -60,6 +60,19 @@ function(Restangular,_) {
     return model;
   });
 
+  Restangular.extendModel('comments', function(model){
+    console.log(model);
+    model.upvote = function() {
+      model.score += 1
+      model.put().then(function(response){
+        console.log(response);
+      }).catch(function(reason){
+        console.log(reason);
+      });
+    }
+    return model;
+  })
+
   return RestangularService;
 
 }]);
