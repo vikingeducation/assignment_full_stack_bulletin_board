@@ -1,0 +1,11 @@
+Posts!
+
+<ul>
+  <li ng-repeat="post in posts">
+    <a ui-sref="posts.show({id: post.id})">{{post.title}}</a>
+    <ul>
+      <p>Author: {{post.author}}</p>
+      <p>Created: {{post.created_at | date}}</p>
+    </ul>
+  </li>
+</ul>
