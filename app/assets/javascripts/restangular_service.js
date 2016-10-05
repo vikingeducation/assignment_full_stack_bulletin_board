@@ -57,13 +57,17 @@ function(Restangular,_) {
           model.comments.push(response);
         });
     };
+    model.voteForComment = function(comment, dir) {
+      comment.score += dir;
+      return Restangular.restangularizeElement(null, comment, 'comments').put();
+      // patch(comment);
+    }
     return model;
   });
 
   Restangular.extendModel('comments', function(model){
-    console.log(model);
-    model.upvote = function() {
-      model.score += 1
+    model.vote = function(dir) {
+      model.score += dir
       model.put().then(function(response){
         console.log(response);
       }).catch(function(reason){

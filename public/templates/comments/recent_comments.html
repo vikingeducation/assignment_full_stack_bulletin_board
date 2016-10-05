@@ -2,8 +2,8 @@
 
 <div ng-repeat="comment in commentInfo.comments | orderBy: '-created_at'">
   <p>
-    <span class="glyphicon glyphicon-arrow-up"></span>
-    <span class="glyphicon glyphicon-arrow-down"></span>
+    <span ng-click="vote(comment, 1)" class="glyphicon glyphicon-arrow-up"></span>
+    <span ng-click="vote(comment, -1)" class="glyphicon glyphicon-arrow-down"></span>
     <span>{{comment.score}}</span> |
     <span>{{comment.author}}</span>
   </p>

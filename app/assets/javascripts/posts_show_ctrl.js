@@ -14,9 +14,12 @@ function($scope, RestangularService, $stateParams, $rootScope) {
       });
   };
 
-  $scope.upvote = function(comment) {
+  $scope.vote = function(comment, dir) {
     console.log(comment);
-    $scope.post.upvoteForComment();
+    $scope.post.voteForComment(comment, dir)
+      .then(function(){
+        $rootScope.$broadcast('comment.vote');
+      })
   };
 
 }]);

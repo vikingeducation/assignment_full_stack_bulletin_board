@@ -19,11 +19,9 @@ function ($scope, RestangularService) {
     $scope.data.posts = RestangularService.getPosts();
   };
 
-  $scope.upvote = function(comment) {
-    console.log(comment);
-    comment.upvote();
+  $scope.vote = function(comment, dir) {
+    comment.vote(dir);
   };
-
 
   $scope.commentInfo = {
     comments: RestangularService.getComments()
@@ -31,11 +29,11 @@ function ($scope, RestangularService) {
   // $scope.comments = RestangularService.getComments();
 
   $scope.$on('comment.create', function() {
-    console.log('from the listener');
-
     $scope.commentInfo.comments = RestangularService.getComments();
-    // $scope.comments = RestangularService.getComments();
+  });
 
+  $scope.$on('comment.vote', function() {
+    $scope.commentInfo.comments = RestangularService.getComments();
   });
 
 }]);
