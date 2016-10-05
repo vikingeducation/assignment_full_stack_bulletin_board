@@ -1,0 +1,3 @@
+<h1>Recent comments here</h1>
+
+<comment-index ng-repeat="comment in comments | orderBy:'-created_at' | limitTo:10" comment="comment"></comment-index>
