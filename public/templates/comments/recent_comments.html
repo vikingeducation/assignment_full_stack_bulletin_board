@@ -1,0 +1,12 @@
+<h2>Recent Comments</h2>
+
+<div ng-repeat="comment in commentInfo.comments | orderBy: '-created_at'">
+  <p>
+    <span ng-click="vote(comment, 1)" class="glyphicon glyphicon-arrow-up"></span>
+    <span ng-click="vote(comment, -1)" class="glyphicon glyphicon-arrow-down"></span>
+    <span>{{comment.score}}</span> |
+    <span>{{comment.author}}</span>
+  </p>
+  <small>Commented on {{comment.created_at | date}}</small>
+  <p>{{comment.body}}</p><hr>
+</div>
