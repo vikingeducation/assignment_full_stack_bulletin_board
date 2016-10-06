@@ -1,7 +1,7 @@
 <h3 class="text-center"><strong>Create New Post</strong></h3>
 <div class="panel panel-primary">
   <div class="panel-body">
-    <form name="postForm">
+    <form name="postForm" ng-init="postParams = {}">
       <div class="form-group">
         <label for="title">Title:</label>
         <input type="text" class="form-control" name="title" ng-model="postParams.title">

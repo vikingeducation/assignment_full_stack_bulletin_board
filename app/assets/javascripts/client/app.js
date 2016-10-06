@@ -12,17 +12,38 @@ BulletBoard.config(function ($stateProvider, $urlRouterProvider, RestangularProv
 		.state('posts', {
 			url: '/posts',
 			views: {
-				'createPost@': {
+				'@': {
+					templateUrl: 'templates/posts/posts.html'
+				},
+				'createPost@posts': {
 					templateUrl: 'templates/posts/create.html',
 					controller: 'postCreateCtrl'
 				},
-				'postsIndex@': {
+				'postsIndex@posts': {
 					templateUrl: 'templates/posts/index.html',
 					controller: 'postsIndexCtrl'
 				},
 				'recentComments@': {
 					templateUrl: 'templates/comments/recent.html',
 					controller: 'recentCommentsCtrl'
+				}
+			}
+		})
+		.state('posts.show', {
+			url: '/:id',
+			views: {
+				'@': {
+					templateUrl: 'templates/posts/show.html',
+					controller: 'postShowCtrl'
+				},
+				'post@posts.show': {
+					templateUrl: 'templates/posts/post.html'
+				},
+				'commentCreate@posts.show': {
+					templateUrl: 'templates/comments/create.html'
+				},
+				'postComments@posts.show': {
+					templateUrl: 'templates/posts/postComments.html'
 				}
 			}
 		})

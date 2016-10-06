@@ -32,5 +32,9 @@ BulletBoard.factory('postService', ['Restangular', '$rootScope', 'Flash', functi
 		return _createPost(params);
 	};
 
+	postService.findPost = function (id) {
+		return Restangular.one('posts', id).get().$object;
+	};
+
 	return postService;
 }]);

@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     respond_to do |format|
-      format.json { render json: @posts.to_json(:include => :comments), status: 200 }
+      format.json { render json: @posts.to_json, status: 200 }
     end
   end
 
@@ -15,6 +15,19 @@ class PostsController < ApplicationController
     else
       respond_to do |format|
         format.json { render json: { :errors => @new_post.errors.full_messages }, status: 'error' }
+      end
+    end
+  end
+
+  def show
+    @post = Post.find_by_id(params[:id])
+    if @post
+      respond_to do |format|
+        format.json { render json: @post.to_json(:include => :comments), status: 200 }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { :errors => @post.errors.full_messages }, status: 'error' }
       end
     end
   end
