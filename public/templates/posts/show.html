@@ -1,0 +1,19 @@
+<h3>Posts</h3>
+<h2>{{post.title}}</h2>
+<p>Posted on {{post.date | date}} by {{post.author}}</p>
+<p>{{post.body}}</p>
+
+<form ng-init="form">
+	<label for="author">Author</label>
+	<input type="text" name="author" ng-model="form.author">
+	<label for="comment">Comment</label>
+	<input type="text" name="comment" ng-model="form.comment">
+	<input type="button" name="submit" value="submit" ng-click="createComment(form)">
+</form>
+
+<div ng-repeat="comment in comments">
+	<p><span class="glyphicon glyphicon-chevron-up" ng-click="upvote(comment)"> </span>
+  <span class="glyphicon glyphicon-chevron-down" ng-click="downvote(comment)"> </span>{{comment.voteCount}} | {{comment.author}} </p>
+	<p>Commented on {{comment.date | date}}</p>
+	<p>{{comment.body}}</p>
+</div>

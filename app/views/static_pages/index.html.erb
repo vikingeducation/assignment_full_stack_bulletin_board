@@ -1,0 +1,15 @@
+<%= content_for(:angular_app) do %>
+  ng-app="app"
+<% end %>
+
+<h1 class="text-center">Full-Stack Bulletin Board</h1>
+<a ui-sref="main.posts" class="text-center">All Posts</a>
+
+<div class="row">
+	<div class="col-sm-4">
+		<div ui-view="recentComments"></div>
+	</div>
+	<div class="col-sm-8">
+		<div ui-view="content"></div>
+	</div>
+</div>
