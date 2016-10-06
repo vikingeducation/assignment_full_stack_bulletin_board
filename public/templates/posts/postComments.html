@@ -1,0 +1,20 @@
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <div ng-repeat="comment in post.comments">
+      <h3>
+        <a href="" ng-click="upvote(comment.id)">
+          <span class="glyphicon glyphicon-arrow-up"></span>
+        </a>
+        {{ comment.score }}
+        <a href="" ng-click="downvote(comment.id)">
+          <span class="glyphicon glyphicon-arrow-down"></span>
+        </a>
+        <span class="text-muted">{{ comment.author }}</span>
+      </h3>
+      <p class="text-muted">Commneted at: {{ comment.created_at | date }}</p>
+      <p>
+        {{ comment.body }}
+      </p>
+    </div>
+  </div>
+</div>

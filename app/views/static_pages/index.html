@@ -1,0 +1,14 @@
+<div class="container" ng-app="BulletBoard">
+  <h1 class="text-center"><strong>Full Stack Bulletin Board</strong></h1>
+  <div class="row">
+    <div class="col-md-12">
+      <flash-message duration="5000" show-close="true"></flash-message>
+    </div>
+    <div class="col-md-4">
+      <div ui-view="recentComments"></div>
+    </div>
+    <div class="col-md-8">
+      <div ui-view></div>
+    </div>
+  </div>
+</div>

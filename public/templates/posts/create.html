@@ -1,0 +1,22 @@
+<h3 class="text-center"><strong>Create New Post</strong></h3>
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <form name="postForm" ng-init="postParams = {}">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" name="title" ng-model="postParams.title">
+      </div>
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" name="author" class="form-control" ng-model="postParams.author">
+      </div>
+      <div class="form-group">
+        <label for="body">Body</label>
+        <textarea name="body" rows="4" class="form-control" ng-model="postParams.body"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" name="Submit" class="btn btn-primary btn-block btn-lg" ng-click="createPost(postParams)">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
