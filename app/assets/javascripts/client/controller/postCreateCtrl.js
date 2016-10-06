@@ -1,3 +1,3 @@
-BulletBoard.controller('postCreateCtrl', ['$scope', function ($scope) {
-	$scope.text = "Mother fucker";
+BulletBoard.controller('postCreateCtrl', ['$scope', 'postService', function ($scope, postService) {
+
 }]);

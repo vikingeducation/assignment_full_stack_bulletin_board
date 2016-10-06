@@ -1,4 +1,12 @@
 <div class="container" ng-app="BulletBoard">
-  <h1>Hello World</h1>
-  <div ui-view="createPost"></div>
+  <h1 class="text-center"><strong>Full Stack Bulletin Board</strong></h1>
+  <div class="row">
+    <div class="col-md-4">
+      <div ui-view="recentCommets"></div>
+    </div>
+    <div class="col-md-8">
+      <div ui-view="createPost"></div>
+      <div ui-view="postsIndex"></div>
+    </div>
+  </div>
 </div>
