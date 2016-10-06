@@ -15,4 +15,5 @@
 //= require lodash.min
 //= require restangular
 //= require angular-bootstrap
+//= require angular-flash-alert
 //= require_tree .

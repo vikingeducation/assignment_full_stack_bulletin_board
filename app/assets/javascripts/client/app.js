@@ -1,4 +1,4 @@
-var BulletBoard = angular.module('BulletBoard', ['ui.router', 'restangular', 'ui.bootstrap']);
+var BulletBoard = angular.module('BulletBoard', ['ui.router', 'restangular', 'ui.bootstrap', 'ngFlash']);
 
 BulletBoard.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
 	// api router configuration
