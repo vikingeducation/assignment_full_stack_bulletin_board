@@ -1,3 +1,3 @@
-BulletBoard.controller('recentCommentsCtrl', ['$scope', function ($scope) {
-
+BulletBoard.controller('recentCommentsCtrl', ['$scope', 'commentService', function ($scope, commentService) {
+	$scope.comments = commentService.all();
 }]);

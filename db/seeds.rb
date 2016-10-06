@@ -7,9 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-puts "Destroy all posts"
+puts "Destroy All"
 Post.destroy_all
-puts "Posts destroyed"
+Comment.destroy_all
+puts "All destroyed"
 
 puts "generating posts"
 5.times do
@@ -20,3 +21,13 @@ puts "generating posts"
   new_post.save!
 end
 puts "posts generated"
+
+puts "generating comments"
+15.times do
+  new_comment = Comment.new
+  new_comment.body = Faker::Lorem.sentence
+  new_comment.author = Faker::Book.author
+  new_comment.post_id = Post.pluck(:id).sample
+  new_comment.save!
+end
+puts "comments generated"

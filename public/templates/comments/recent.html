@@ -1,1 +1,21 @@
-<h1>Recent Comments</h1>
+<h3 class="text-center"><strong>Recent Comments</strong></h3>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div ng-repeat="comment in comments | orderBy : '-created_by' | limitTo : 10">
+      <h3>
+        <a href="">
+          <span class="glyphicon glyphicon-arrow-up"></span>
+        </a>
+        {{ comment.score }}
+        <a href="">
+          <span class="glyphicon glyphicon-arrow-down"></span>
+        </a>
+        <span class="text-muted">{{ comment.author }}</span>
+      </h3>
+      <p class="text-muted">Commneted at: {{ comment.created_at | date }}</p>
+      <p>
+        {{ comment.body }}
+      </p>
+    </div>
+  </div>
+</div>
