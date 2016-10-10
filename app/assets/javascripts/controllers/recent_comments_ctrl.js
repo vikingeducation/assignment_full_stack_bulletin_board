@@ -2,7 +2,9 @@ fullStackBB.controller("RecentCommentsCtrl", ['$scope', 'commentService', functi
 
   $scope.comments = commentService.getRecentComments().$object;
 
-
+  $scope.$on('comment.created', function(){
+    $scope.comments = commentService.getRecentComments().$object;
+  })
 
 
 }])

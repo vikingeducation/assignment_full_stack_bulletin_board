@@ -11,5 +11,11 @@ fullStackBB.factory("commentService", ['Restangular', function(Restangular){
   };
 
 
+  service.createComment = function(commentParams){
+    var comment = { comment: commentParams };
+    return Restangular.all('comments').post(comment);
+  };
+
+
   return service;
 }]);
