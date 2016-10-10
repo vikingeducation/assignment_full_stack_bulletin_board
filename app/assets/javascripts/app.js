@@ -43,6 +43,22 @@ fullStackBB.config(function($stateProvider, $urlRouterProvider){
         }
       }
     })
+
+
+    .state("posts.show", {
+      url: "posts/:id", 
+      views: {
+        "@": {
+          templateUrl: "templates/posts/show.html",
+          controller: "PostShowCtrl"
+        },
+
+        "recent-comments@": {
+          templateUrl: "templates/comments/recent_comments.html",
+          controller: "RecentCommentsCtrl"
+        }
+      }
+    })
 })
 
 

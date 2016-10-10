@@ -6,6 +6,10 @@ fullStackBB.factory("postService", ['Restangular', function(Restangular){
     return Restangular.all('posts').getList();
   };
 
+  service.getPost = function(id){
+    return Restangular.one('posts', id).get();
+  };
+
 
   service.createPost = function(formData){
     var post = { post: formData };
