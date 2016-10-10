@@ -1,0 +1,52 @@
+<div class="col-xs-12">
+  <h1>Post</h1>
+
+  <div id="post">
+    <h1>{{post.title}}</h1>
+    <p>Posted on {{post.date | date}} by {{post.author}}</p><br>
+
+    <p>{{post.content}}</p>
+  </div>
+
+  <div id="comment-form-wrapper">
+    <form id="comment-form">
+      <h2>Comment Form</h2>
+      <div class="form-group">
+        <label>Author</label>
+        <input type="text" name="author" ng-model="form.author">
+      </div>
+
+      <div class="form-group">
+        <label>Comment Body</label>
+        <input type="text" name="body" ng-model="form.content">
+      </div>
+
+      <button ng-click="createComment(form)">Create</button>
+    </form>
+
+
+  </div> <!-- end comment form -->
+
+  <div id="post-comments">
+    <div id="post-comment" ng-repeat="comment in comments | orderBy:'-score' ">
+      <div class="row">
+        <div class="col-xs-1">
+          <a ng-click="vote(comment, 1)">^</a><a ng-click="vote(comment, -1)">v</a>
+        </div>
+        <div class="col-xs-1">
+          <h3>{{comment.score}}</h3>
+        </div>
+        <div class="col-xs-10">
+          <h3>{{comment.author}}</h3>
+        </div>
+
+      </div> <!-- end first row -->
+
+      <p>Commented on {{comment.created_at | date}}</p>
+
+      <p>{{comment.content}}</p>
+    </div>
+  </div>
+
+
+</div> <!-- end posts col -->

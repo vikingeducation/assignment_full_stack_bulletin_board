@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1 class="text-center">Posts</h1>  
+    
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-12 col-xs-offset-4">
+    <form>
+      <div class="form-group">  
+        Title<input type="text" ng-model="form.title">
+      </div>
+
+      <div class="form-group">  
+        Author<input type="text" ng-model="form.author">
+      </div>
+
+      <div class="form-group">  
+        Content<textarea ng-model="form.content"></textarea>
+      </div>
+
+      <button ng-click="createPost()">Submit</button>
+    </form>
+
+  </div>
+</div>
+
+
+
+<div class="row" ng-repeat="post in posts">
+  <div class="col-xs-12">
+    <h2 class="text-center"><a ui-sref="posts.show({id: post.id})">{{ post.title }}</a></h2>
+    <p class="text-center">Posted on {{ post.created_at | date }} by {{ post.author }}</p>
+  </div>
+
+
+</div>
