@@ -9,7 +9,7 @@
 
 <div class="comment" ng-repeat="comment in comments">
   <div class="row">
-    <h2><a>^  </a><a>v</a>  |   {{ comment.author }}</h2>
+    <h2><a ng-click="vote(comment, 1)">^  </a><a ng-click="vote(comment, -1)">v</a>  |   {{ comment.author }}  | {{ comment.score }}</h2>
   </div>
 
   <div class="row">

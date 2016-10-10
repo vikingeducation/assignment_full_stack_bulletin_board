@@ -16,6 +16,15 @@ fullStackBB.factory("commentService", ['Restangular', function(Restangular){
     return Restangular.all('comments').post(comment);
   };
 
+  service.vote = function(comment, number){
+    var data = { id: comment.id, number: number };
+    return Restangular.all('comments').customPOST(data, 'vote');
+
+  };
+
+
+  
+
 
   return service;
 }]);

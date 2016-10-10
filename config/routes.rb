@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :comments do 
     collection do 
       get 'recent'
+      post 'vote'
     end
   end
 

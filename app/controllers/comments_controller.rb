@@ -20,6 +20,19 @@ class CommentsController < ApplicationController
 
   end
 
+  def vote
+    number = params[:number]
+    @comment = Comment.find(params[:id])
+
+    @comment.score += number.to_i
+    @comment.save
+
+    respond_to do |format|
+      format.json { render json: @comment }
+    end
+
+  end
+
 
   def index
     @post = Post.find(params[:post_id])

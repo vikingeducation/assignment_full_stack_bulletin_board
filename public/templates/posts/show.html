@@ -28,10 +28,10 @@
   </div> <!-- end comment form -->
 
   <div id="post-comments">
-    <div id="post-comment" ng-repeat="comment in comments | orderBy:'score' ">
+    <div id="post-comment" ng-repeat="comment in comments | orderBy:'-score' ">
       <div class="row">
         <div class="col-xs-1">
-          <a ng-click="comment.upVote()">^</a><a ng-click="comment.downVote()">v</a>
+          <a ng-click="vote(comment, 1)">^</a><a ng-click="vote(comment, -1)">v</a>
         </div>
         <div class="col-xs-1">
           <h3>{{comment.score}}</h3>
