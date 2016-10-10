@@ -6,6 +6,10 @@ fullStackBB.factory("commentService", ['Restangular', function(Restangular){
     return Restangular.all('comments').getList();
   };
 
+  service.getRecentComments = function(){
+    return Restangular.all('comments').customGET('recent');
+  };
+
 
   return service;
 }]);

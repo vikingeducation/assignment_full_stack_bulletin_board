@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   
-  resources :posts
-  resources :comments
+  resources :posts do 
+    resources :comments, only: [:index]
+  end
+  resources :comments do 
+    collection do 
+      get 'recent'
+    end
+  end
 
   root 'static_pages#index'
   # The priority is based upon order of creation: first created -> highest priority.

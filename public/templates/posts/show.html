@@ -28,23 +28,23 @@
   </div> <!-- end comment form -->
 
   <div id="post-comments">
-    <div id="post-comment" ng-repeat="commentId in post.comments | scoreFilter:comments">
+    <div id="post-comment" ng-repeat="comment in comments">
       <div class="row">
         <div class="col-xs-1">
-          <a ng-click="comments[commentId].upVote()">^</a><a ng-click="comments[commentId].downVote()">v</a>
+          <a ng-click="comment.upVote()">^</a><a ng-click="comment.downVote()">v</a>
         </div>
         <div class="col-xs-1">
-          <h3>{{comments[commentId].score}}</h3>
+          <h3>{{comment.score}}</h3>
         </div>
         <div class="col-xs-10">
-          <h3>{{comments[commentId].author}}</h3>
+          <h3>{{comment.author}}</h3>
         </div>
 
       </div> <!-- end first row -->
 
-      <p>Commented on {{comments[commentId].date | date}}</p>
+      <p>Commented on {{comment.created_at | date}}</p>
 
-      <p>{{comments[commentId].body}}</p>
+      <p>{{comment.body}}</p>
     </div>
   </div>
 
