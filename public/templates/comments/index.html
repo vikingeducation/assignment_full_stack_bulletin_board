@@ -1,0 +1,7 @@
+<h2>Recent Comments</h2>
+<div ng-repeat="comment in comments">
+  <h4><span class="glyphicon glyphicon-arrow-up text-success"></span> <span class="glyphicon glyphicon-arrow-down text-danger"></span> {{ comment.score }} | {{ comment.author }}</h4>
+  <em>Commented on {{ comment.created_at | date }}</em>
+  <p>{{ comment.text }}</p>
+  <hr>
+</div>

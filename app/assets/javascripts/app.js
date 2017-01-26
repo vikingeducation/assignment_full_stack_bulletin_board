@@ -15,13 +15,59 @@ myApp = angular.module('myApp', ['ui.router', 'restangular'])
 
 .config(['$urlRouterProvider', '$stateProvider',
   function($urlRouterProvider, $stateProvider){
-    $urlRouterProvider.otherwise('');
-
+    $urlRouterProvider.otherwise('/posts');
     $stateProvider
-      .state('root', {
-        url: '',
-        template: 'hello angular'
+      .state('posts', {
+        url: '/posts',
+        templateUrl: '/templates/postsLayout.html',
       })
+      .state('posts.index', {
+        url: '/index',
+        views: {
+          'postIndex@posts': {
+            templateUrl: '/templates/posts/index.html',
+            controller: 'PostsIndexCtrl',
+            resolve: {
+              posts: ['Restangular', function(Restangular){
+                return Restangular.all('posts').getList();
+              }]
+            }
+          },
+          'recentComments@posts': {
+            templateUrl: 'templates/comments/index.html',
+            controller: 'CommentsIndexCtrl',
+            resolve: {
+              comments: ['Restangular', function(Restangular){
+                return Restangular.all('comments').getList();
+              }]
+            }
+          },
+        }
+      })
+      // .state('posts.show', {
+      //   url: '/show/:id',
+      //   views: {
+      //     'recentComments@': {
+      //       templateUrl: '/templates/posts/show.html',
+      //       controller: 'PostsShowCtrl',
+      //       resolve: {
+      //         post: ['Restangular', '$stateParams',
+      //             function(Restangular, $stateParams){
+      //               return Restangular.one('posts', $stateParams.id).get();
+      //         }]
+      //       }
+      //     },
+      //     'postIndex@': {
+      //       templateUrl: '/templates/posts/index.html',
+      //       controller: 'PostsIndexCtrl',
+      //       resolve: {
+      //         posts: ['Restangular', function(Restangular){
+      //           return Restangular.all('posts').getList();
+      //         }]
+      //       }
+      //     }
+      //   }
+      // })
   }])
 
 .run(function($rootScope){
