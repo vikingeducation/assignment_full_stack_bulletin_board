@@ -1,4 +1,4 @@
-myApp.factory("commentService", ['Restangular', function(Restangular){
+myApp.factory("commentService", ['Restangular', '$rootScope', function(Restangular, $rootScope){
 
   var commentService = {};
 
@@ -15,11 +15,13 @@ myApp.factory("commentService", ['Restangular', function(Restangular){
     return Restangular.all('comments').post(comment);
   };
 
-  // commentService.vote = function(comment, number){
-  //   var data = { id: comment.id, number: number };
-  //   return Restangular.all('comments').customPOST(data, 'vote');
-
-  // };
+  commentService.vote = function(comment_id, value){
+    var data = { value: value };
+    return Restangular.one('comments', comment_id).customPOST(data, 'vote')
+                      .then( function() {
+                        $rootScope.$broadcast('comment.updated');
+                      })
+  };
 
   return commentService;
 }]);

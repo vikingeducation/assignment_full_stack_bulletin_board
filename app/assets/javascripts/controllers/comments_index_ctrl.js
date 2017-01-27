@@ -9,7 +9,17 @@ myApp.controller('CommentsIndexCtrl', ['$scope', 'comments', 'Restangular', 'com
         });
     });
 
-    $scope.upvote = function(comment_id) {
-      Restangular.one("comments", comment_id).post();
+    $scope.$on('comment.updated', function(eventName, comment) {
+      commentService.getRecent()
+        .then(function(comments) {
+          angular.copy(comments, $scope.comments);
+        });
+    });
+
+    $scope.upVote = function(comment) {
+      commentService.vote(comment.id, 1);
+    }
+    $scope.downVote = function(comment) {
+      commentService.vote(comment.id, -1);
     }
   }])

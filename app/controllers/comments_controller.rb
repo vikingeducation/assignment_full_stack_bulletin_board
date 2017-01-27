@@ -32,25 +32,12 @@ class CommentsController < ApplicationController
     end
   end
 
-  def upvote
+  def vote
     @comment = Comment.find(params[:id])
-    @comment.score += 1;
+    @comment.score += params[:value]
     respond_to do |format|
-      if @comment.update(comment_params)
-        format.json { render json: @post.to_json }
-      else
-        format.json { render status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def downvote
-    @comment = Comment.find(params[:id])
-    @comment.score -= 1;
-    @comment.score = 0 if @comment < 0
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.json { render json: @post.to_json }
+      if @comment.save
+        format.json { render json: @comment.to_json }
       else
         format.json { render status: :unprocessable_entity }
       end

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
         collection do
           get 'recent'
         end
+        member do
+          post 'vote'
+        end
       end
     end
   end
