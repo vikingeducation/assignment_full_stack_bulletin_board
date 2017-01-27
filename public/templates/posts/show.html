@@ -1,4 +1,30 @@
-<h4>{{ post.title }}</a></h4>
-<p>Posted on <em>{{ post.created_at | date }}</em> by {{ post.author }}</p>
-<hr>
-<p>{{ post.body }}</p>
+<div class="row">
+  <h4>{{ post.title }}</a></h4>
+  <p>Posted on <em>{{ post.created_at | date }}</em> by {{ post.author }}</p>
+  <hr>
+  <p>{{ post.body }}</p>
+</div>
+
+<div class="row">
+<h3>New Comment</h3>
+<form name="commentform" class="form-group post-form">
+  <label class="col-sm-2 col-form-label form-label">Author:</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="params.author" class="form-control form-control-success">
+  </div>
+  <label class="col-sm-2 col-form-label form-label">Text:</label>
+  <div class="col-sm-10">
+    <textarea ng-model="params.text" class="form-control form-control-success"></textarea>
+  </div>
+  <button class="btn btn-primary col-sm-6 col-sm-offset-3" ng-disabled="commentform.$invalid" ng-click="createComment(params)">Submit</button><br>
+</form>
+</div>
+
+<div class="row">
+  <div ng-repeat="comment in comments | orderBy: '-score'">
+    <h4><span class="glyphicon glyphicon-arrow-up text-success"></span> <span class="glyphicon glyphicon-arrow-down text-danger"></span> {{ comment.score }} | {{ comment.author }}</h4>
+    <em>Commented on {{ comment.created_at | date }}</em>
+    <p>{{ comment.text }}</p>
+    <hr>
+  </div>
+</div>

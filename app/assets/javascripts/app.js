@@ -15,59 +15,55 @@ myApp = angular.module('myApp', ['ui.router', 'restangular'])
 
 .config(['$urlRouterProvider', '$stateProvider',
   function($urlRouterProvider, $stateProvider){
-    $urlRouterProvider.otherwise('/posts');
+    $urlRouterProvider.otherwise('/posts/index');
     $stateProvider
       .state('posts', {
         url: '/posts',
-        templateUrl: '/templates/postsLayout.html',
+        views: {
+          'recentComments@' : {
+            templateUrl: 'templates/comments/index.html',
+            controller: 'CommentsIndexCtrl',
+            resolve: {
+              comments: ['commentService', function(commentService){
+                return commentService.getRecent();
+              }]
+            }
+          }
+        }
       })
       .state('posts.index', {
         url: '/index',
         views: {
-          'postIndex@posts': {
+          'postIndex@': {
             templateUrl: '/templates/posts/index.html',
             controller: 'PostsIndexCtrl',
             resolve: {
-              posts: ['Restangular', function(Restangular){
-                return Restangular.all('posts').getList();
-              }]
-            }
-          },
-          'recentComments@posts': {
-            templateUrl: 'templates/comments/index.html',
-            controller: 'CommentsIndexCtrl',
-            resolve: {
-              comments: ['Restangular', function(Restangular){
-                return Restangular.all('comments').getList();
+              posts: ['postService', function(postService){
+                return postService.getPosts();
               }]
             }
           },
         }
       })
-      // .state('posts.show', {
-      //   url: '/show/:id',
-      //   views: {
-      //     'recentComments@': {
-      //       templateUrl: '/templates/posts/show.html',
-      //       controller: 'PostsShowCtrl',
-      //       resolve: {
-      //         post: ['Restangular', '$stateParams',
-      //             function(Restangular, $stateParams){
-      //               return Restangular.one('posts', $stateParams.id).get();
-      //         }]
-      //       }
-      //     },
-      //     'postIndex@': {
-      //       templateUrl: '/templates/posts/index.html',
-      //       controller: 'PostsIndexCtrl',
-      //       resolve: {
-      //         posts: ['Restangular', function(Restangular){
-      //           return Restangular.all('posts').getList();
-      //         }]
-      //       }
-      //     }
-      //   }
-      // })
+      .state('posts.show', {
+        url: '/:id',
+        views: {
+          'postIndex@': {
+            templateUrl: '/templates/posts/show.html',
+            controller: 'PostsShowCtrl',
+            resolve: {
+              post: ['postService', '$stateParams',
+                function(postService, $stateParams){
+                  return postService.getPost($stateParams.id);
+              }],
+              comments: ['postService', '$stateParams',
+                function(postService, $stateParams){
+                  return postService.getComments($stateParams.id);
+              }]
+            }
+          },
+        }
+      })
   }])
 
 .run(function($rootScope){
