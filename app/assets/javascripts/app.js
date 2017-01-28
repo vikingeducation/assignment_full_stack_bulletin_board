@@ -19,7 +19,6 @@ myApp = angular.module('myApp', ['ui.router', 'restangular'])
     $stateProvider
       .state('posts', {
         url: '/posts',
-        abstract: true,
         views: {
           'recentComments@' : {
             templateUrl: 'templates/comments/index.html',
@@ -47,7 +46,7 @@ myApp = angular.module('myApp', ['ui.router', 'restangular'])
         }
       })
       .state('posts.show', {
-        url: '/:id',
+        url: '/show/:id',
         views: {
           'postIndex@': {
             templateUrl: '/templates/posts/show.html',

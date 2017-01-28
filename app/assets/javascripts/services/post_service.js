@@ -3,11 +3,7 @@ myApp.factory("postService", ['Restangular', 'commentService', function(Restangu
   var postService = {};
 
   postService.getPosts = function(){
-    return Restangular.all('posts').getList()
-                      .then(function(posts) {
-            _restangularizePostsComments(posts);
-            return posts;
-          });
+    return Restangular.all('posts').getList();
   };
 
   postService.getPost = function(id){
