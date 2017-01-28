@@ -1,16 +1,16 @@
-myApp.controller('RecentCommentsCtrl', ['$scope', 'comments', 'Restangular', 'commentService',
-  function($scope, comments, Restangular, commentService){
+myApp.controller('RecentCommentsCtrl', ['$scope', 'comments', 'Restangular', 'commentService', '$rootScope',
+  function($scope, comments, Restangular, commentService, $rootScope){
     $scope.comments = comments;
 
     $scope.$on('comment.created', function() {
-      commentService.getRecent()
+      commentService.getComments()
         .then(function(comments) {
           angular.copy(comments, $scope.comments);
         });
     });
 
     $scope.$on('comment.updated', function(eventName, comment) {
-      commentService.getRecent()
+      commentService.getComments()
         .then(function(comments) {
           angular.copy(comments, $scope.comments);
         });

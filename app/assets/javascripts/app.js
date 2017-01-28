@@ -19,6 +19,7 @@ myApp = angular.module('myApp', ['ui.router', 'restangular'])
     $stateProvider
       .state('posts', {
         url: '/posts',
+        abstract: true,
         views: {
           'recentComments@' : {
             templateUrl: 'templates/comments/index.html',
@@ -55,10 +56,6 @@ myApp = angular.module('myApp', ['ui.router', 'restangular'])
               post: ['postService', '$stateParams',
                 function(postService, $stateParams){
                   return postService.getPost($stateParams.id);
-              }],
-              comments: ['postService', '$stateParams',
-                function(postService, $stateParams){
-                  return postService.getComments($stateParams.id);
               }]
             }
           },

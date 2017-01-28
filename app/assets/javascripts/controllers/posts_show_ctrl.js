@@ -1,7 +1,7 @@
-myApp.controller('PostsShowCtrl', ['$scope', 'post', 'comments', 'Restangular', '$rootScope', 'postService', 'commentService',
-  function($scope, post, comments, Restangular, $rootScope, postService, commentService){
+myApp.controller('PostsShowCtrl', ['$scope', 'post', 'Restangular', '$rootScope', 'postService', 'commentService',
+  function($scope, post, Restangular, $rootScope, postService, commentService){
     $scope.post = post;
-    $scope.comments = comments;
+    $scope.comments = $scope.post.comments;
     $scope.params = {
       author  : "",
       text    : ""

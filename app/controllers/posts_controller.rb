@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     respond_to do |format|
-      format.json { render json: @post.to_json }
+      format.json { render json: @post.to_json(:include => :comments) }
     end
   end
 

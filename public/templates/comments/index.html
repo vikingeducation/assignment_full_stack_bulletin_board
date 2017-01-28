@@ -5,7 +5,7 @@
     <span class="glyphicon glyphicon-arrow-down text-danger" ng-click="downvoteComment(comment.id)"></span>
     {{ comment.score }} | {{ comment.author }}
   </h4>
-  <em>Commented on {{ comment.created_at | date }}</em>
+  <em>Commented on a <a ui-sref="posts.show({id: comment.post_id})">post</a> on {{ comment.created_at | date }}</em>
   <p>{{ comment.text }}</p>
   <hr>
 </div>

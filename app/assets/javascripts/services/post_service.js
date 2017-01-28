@@ -3,11 +3,19 @@ myApp.factory("postService", ['Restangular', 'commentService', function(Restangu
   var postService = {};
 
   postService.getPosts = function(){
-    return Restangular.all('posts').getList();
+    return Restangular.all('posts').getList()
+                      .then(function(posts) {
+            _restangularizePostsComments(posts);
+            return posts;
+          });
   };
 
   postService.getPost = function(id){
-    return Restangular.one('posts', id).get();
+    return Restangular.one('posts', id).get()
+                      .then(function(post) {
+            _restangularizePostComments(post);
+            return post;
+          });
   };
 
   postService.getComments = function(id){
@@ -30,6 +38,18 @@ myApp.factory("postService", ['Restangular', 'commentService', function(Restangu
 
     return model;
   })
+
+  var _restangularizePostComments = function(post) {
+    post.comments = Restangular
+        .restangularizeCollection(post, post.comments, 'comments');
+  };
+
+
+  var _restangularizePostsComments = function(posts) {
+    _.each(posts, function(post) {
+      _restangularizePostComments(post);
+    });
+  };
 
   return postService;
 }]);
