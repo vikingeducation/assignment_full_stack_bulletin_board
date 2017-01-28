@@ -12,3 +12,5 @@ Steps to Init Angular in Rails:
 5. Add static_pages controller, view and route for index action. Also make it as root route.
 6. Add app.js in app/asset/javascript, create and configure an angular app.
 7. Add <ui-view></ui-view> in index.html, to display angular app content.
+
+![bul_board.gif](bul_board.gif)
