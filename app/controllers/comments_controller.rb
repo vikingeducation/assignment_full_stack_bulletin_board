@@ -1,16 +1,14 @@
 class CommentsController < ApplicationController
-  def recent
-    @comments = Comment.order(created_at: :desc).limit(5)
-    respond_to do |format|
-      format.json { render json: @comments.to_json }
-    end
-  end
+  before_action :set_comment, :except => [:index, :create, :recent]
 
   def index
-    @post = Post.find(params[:post_id])
-    @comments = @post.comments
+    if (params[:post_id] && @post = Post.find(params[:post_id]))
+      @comments = @post.comments
+    else
+      @comments = Comment.order(created_at: :desc).limit(10)
+    end
     respond_to do |format|
-      format.json { render json: @comments }
+      format.json { render json: @comments.to_json }
     end
   end
 
@@ -32,19 +30,29 @@ class CommentsController < ApplicationController
     end
   end
 
-  def vote
-    @comment = Comment.find(params[:id])
-    @comment.score += params[:value]
+  def update
     respond_to do |format|
-      if @comment.save
-        format.json { render json: @comment.to_json }
+      if @comment.update(comment_params)
+        flash.now[:error] = 'Comment updated'
+        format.json { render :json => @comment, :status => 200 }
       else
-        format.json { render status: :unprocessable_entity }
+        flash.now[:error] = 'Comment not updated'
+        format.json { render :json => comment_errors, :status => 422 }
       end
     end
   end
 
   private
+
+  def set_comment
+    @comment = Comment.find_by_id(params[:id])
+    unless @comment
+      flash.now[:error] = 'Could not find comment'
+      respond_to do |format|
+        format.json { render :json => @comment, :status => 422 }
+      end
+    end
+  end
 
   def comment_params
     params.require(:comment).permit(:text, :author, :score, :post_id)

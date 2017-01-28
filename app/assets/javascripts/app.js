@@ -22,10 +22,10 @@ myApp = angular.module('myApp', ['ui.router', 'restangular'])
         views: {
           'recentComments@' : {
             templateUrl: 'templates/comments/index.html',
-            controller: 'CommentsIndexCtrl',
+            controller: 'RecentCommentsCtrl',
             resolve: {
               comments: ['commentService', function(commentService){
-                return commentService.getRecent();
+                return commentService.getComments();
               }]
             }
           }

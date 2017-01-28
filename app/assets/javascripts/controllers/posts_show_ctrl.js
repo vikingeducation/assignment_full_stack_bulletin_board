@@ -34,4 +34,28 @@ myApp.controller('PostsShowCtrl', ['$scope', 'post', 'comments', 'Restangular', 
     $scope.downVote = function(comment) {
       commentService.vote(comment.id, -1);
     }
+
+    $scope.upvoteComment = function(id) {
+      var comment = _.find($scope.comments, function(comment) {
+        return comment.id === id;
+      });
+
+      comment.upvote()
+        .then(function() {
+          $rootScope.$broadcast('comment.updated');
+        });
+    };
+
+
+    $scope.downvoteComment = function(id) {
+      var comment = _.find($scope.comments, function(comment) {
+        return comment.id === id;
+      });
+
+      comment.downvote()
+        .then(function() {
+          $rootScope.$broadcast('comment.updated');
+        });
+    };
+
   }])

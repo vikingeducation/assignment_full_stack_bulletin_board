@@ -22,7 +22,11 @@
 
 <div class="row">
   <div ng-repeat="comment in comments | orderBy: '-score'">
-  <h4><span class="glyphicon glyphicon-arrow-up text-success" ng-click="upVote(comment)"></span> <span class="glyphicon glyphicon-arrow-down text-danger" ng-click="downVote(comment)"></span> {{ comment.score }} | {{ comment.author }}</h4>
+    <h4>
+      <span class="glyphicon glyphicon-arrow-up text-success" ng-click="upvoteComment(comment.id)"></span>
+      <span class="glyphicon glyphicon-arrow-down text-danger" ng-click="downvoteComment(comment.id)"></span>
+      {{ comment.score }} | {{ comment.author }}
+    </h4>
     <em>Commented on {{ comment.created_at | date }}</em>
     <p>{{ comment.text }}</p>
     <hr>

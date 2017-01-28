@@ -4,16 +4,9 @@ Rails.application.routes.draw do
   scope :api do
     scope :v1 do
       resources :posts do
-        resources :comments, only: [:index]
+        resources :comments, only: [:index, :update, :create]
       end
-      resources :comments do
-        collection do
-          get 'recent'
-        end
-        member do
-          post 'vote'
-        end
-      end
+      resources :comments, :except => [:new, :edit]
     end
   end
 end

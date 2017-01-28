@@ -6,10 +6,6 @@ myApp.factory("commentService", ['Restangular', '$rootScope', function(Restangul
     return Restangular.all('comments').getList();
   };
 
-  commentService.getRecent = function(){
-    return Restangular.all('comments').customGET('recent');
-  };
-
   commentService.createComment = function(commentParams){
     var comment = { comment: commentParams };
     return Restangular.all('comments').post(comment);
@@ -22,6 +18,21 @@ myApp.factory("commentService", ['Restangular', '$rootScope', function(Restangul
                         $rootScope.$broadcast('comment.updated');
                       })
   };
+
+  Restangular.extendModel('comments', function(model) {
+
+    model.upvote = function() {
+      model.score += 1;
+      return model.put();
+    };
+
+    model.downvote = function() {
+      model.score -= 1;
+      return model.put();
+    };
+
+    return model;
+  });
 
   return commentService;
 }]);

@@ -31,6 +31,5 @@ myApp.factory("postService", ['Restangular', 'commentService', function(Restangu
     return model;
   })
 
-
   return postService;
 }]);
