@@ -1,9 +1,9 @@
-App.controller('CommentsCtrl', ['$scope', 'Restangular', '$stateParams', function($scope, Restangular, $stateParams){
+App.controller('CommentsCtrl', ['$scope', 'Restangular', '$stateParams', 'RatingService',
+                                function($scope, Restangular, $stateParams, RatingService){
   $scope.commentForm = {};
 
 
   $scope.comments = Restangular.all('comments').getList().$object;
-  //$scope.postComments = Restangular.one('posts', $stateParams.id).all('comments').getList().$object;
 
   $scope.commentPost = function(){
     console.log();
@@ -17,6 +17,18 @@ App.controller('CommentsCtrl', ['$scope', 'Restangular', '$stateParams', functio
       $scope.comments.push(response);
       $scope.commentForm = {};
     });
+  }
+
+
+
+  $scope.upvote = function(comment){
+    console.log(comment);
+    RatingService.upvote(comment);
+  }
+
+  $scope.downvote = function(comment){
+    console.log(comment);
+    RatingService.downvote(comment);
   }
 
 }]);

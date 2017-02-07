@@ -1,8 +1,11 @@
-App.controller('PostsCtrl', ['$scope', 'Restangular', '$stateParams', function($scope, Restangular, $stateParams){
+App.controller('PostsCtrl', ['$scope', 'Restangular', '$stateParams', 'RatingService',
+                              function($scope, Restangular, $stateParams, RatingService){
 
   $scope.postForm = {};
-
+  $scope.post = Restangular.one('posts', $stateParams.id).get().$object;
   $scope.posts = Restangular.all('posts').getList().$object;
+
+
 
   $scope.createPost = function(){
     Restangular.all('posts').post({
@@ -18,9 +21,14 @@ App.controller('PostsCtrl', ['$scope', 'Restangular', '$stateParams', function($
     })
   };
 
+  $scope.upvote = function(comment){
+    RatingService.upvote(comment);
+  };
 
-  $scope.post = Restangular.one('posts', $stateParams.id).get().$object;
-  console.log($scope.post);
+  $scope.downvote = function(comment){
+    RatingService.downvote(comment);
+  }
+
 
 
 }]);
