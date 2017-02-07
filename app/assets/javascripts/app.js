@@ -39,6 +39,14 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         '@' : {
           templateUrl: 'templates/_post.html',
           controller: 'PostsCtrl'
+        },
+        'comments@posts.show' : {
+          templateUrl: 'templates/_comments.html',
+          controller: 'CommentsCtrl'
+        },
+        'createComment@posts.show' : {
+          templateUrl: 'templates/createComment.html',
+          controller: 'CommentsCtrl'
         }
       }
     })

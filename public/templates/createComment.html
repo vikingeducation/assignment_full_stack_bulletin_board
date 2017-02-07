@@ -1,0 +1,9 @@
+<h4>Leave a Comment</h4>
+<form class="form-group" name="commentForm">
+  Author
+  <input type="text" class="form-control" ng-model="commentForm.author">
+  Body
+  <textarea type="text" class="form-control" ng-model="commentForm.body"></textarea>
+  <br />
+  <button type="button" name="button" class="btn btn-primary btn-sm" ng-click="commentPost()">Comment</button>
+</form>

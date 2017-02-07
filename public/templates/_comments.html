@@ -1,5 +1,7 @@
 <h4>Recent Comments</h4>
-<div ng-repeat="comment in comments" >
-  <h5>By {{ comment.post.body }}</h5>
+<div ng-repeat="comment in comments | orderBy: '-created_at' " >
+  <h5>3 | {{ comment.author }}</h5>
+  <p>Commented on {{ comment.created_at | date}}</p>
   <p>{{ comment.body }}</p>
+  <br>
 </div>

@@ -12,8 +12,6 @@ App.controller('PostsCtrl', ['$scope', 'Restangular', '$stateParams', function($
       body: $scope.postForm.body
 
     }).then(function(response){
-
-
       console.log(response);
       $scope.postForm = {};
       $scope.posts.push(response);
