@@ -1,0 +1,17 @@
+<h4>Posts</h4>
+<form name="postForm" class="form-group">
+  Title
+  <input type="text" ng-model="postForm.title" class="form-control">
+  Author
+  <input type="text" ng-model="postForm.author" class="form-control">
+  Post
+  <textarea name="name" rows="8" cols="80" ng-model="postForm.body" class="form-control"></textarea><br>
+  <button type="button" name="button" class="btn btn-primary btn-sm" ng-click="createPost(postForm)">Submit</button>
+</form>
+<br />
+
+
+<div ng-repeat="post in posts | orderBy: '-created_at'" >
+  <a ui-sref="posts.show({ id: post.id })"><h3>{{ post.title }}</h3></a>
+  <p>Posted on {{ post.created_at | date }} by <em>{{ post.author }}</em></p>
+</div>

@@ -1,5 +1,14 @@
-<div ng-app="App" class="container">
-  <div ng-controller="AppCtrl">
-    {{ hello }}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Bulletin Board</a>
+    </div>
+
+
+    <ul class="nav navbar-nav">
+      <li><a ui-sref="posts.index">Posts</a></li>
+    </ul>
   </div>
-</div>
+</nav>
+
+<div ui-view class="container-fluid"></div>

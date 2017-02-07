@@ -1,7 +1,47 @@
 var App = angular.module('App', ['ui.router', 'restangular']);
 
+App.config(['RestangularProvider', function(RestangularProvider){
+  RestangularProvider.setBaseUrl('/api/v1');
+  RestangularProvider.setRequestSuffix('.json');
+}]);
 
-App.controller('AppCtrl', ['$scope', function($scope){
-  $scope.hello = "Hello, World";
-  console.log("Hello");
+
+App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+
+  $urlRouterProvider.otherwise('/posts/index');
+
+  $stateProvider
+    .state('posts', {
+      url: '/posts',
+      templateUrl: 'templates/index.html'
+    })
+
+    .state('posts.index', {
+      url: '/index',
+      views: {
+        'posts' : {
+          templateUrl: 'templates/_posts.html',
+          controller: 'PostsCtrl'
+        },
+        'comments' : {
+          templateUrl: 'templates/_comments.html',
+          controller: 'CommentsCtrl'
+        },
+        '' : {
+
+        }
+      }
+    })
+
+    .state('posts.show', {
+      url: '/:id',
+      views: {
+        '@' : {
+          templateUrl: 'templates/_post.html',
+          controller: 'PostsCtrl'
+        }
+      }
+    })
+
+
 }]);
