@@ -1,32 +1,31 @@
-App.controller('PostsCtrl', ['$scope', 'Restangular', '$stateParams', 'RatingService',
-                              function($scope, Restangular, $stateParams, RatingService){
+App.controller('PostsCtrl', ['$scope', 'Restangular', '$stateParams', 'PostService',
+                              function($scope, Restangular, $stateParams, PostService){
 
   $scope.postForm = {};
-  $scope.post = Restangular.one('posts', $stateParams.id).get().$object;
-  $scope.posts = Restangular.all('posts').getList().$object;
 
+  $scope.post = Restangular.one('posts', $stateParams.id).get().$object;
+
+  $scope.posts = PostService.all();
 
 
   $scope.createPost = function(){
-    Restangular.all('posts').post({
-
-      title: $scope.postForm.title,
-      author: $scope.postForm.author,
-      body: $scope.postForm.body
-
-    }).then(function(response){
-      console.log(response);
-      $scope.postForm = {};
-      $scope.posts.push(response);
-    })
+    $scope.posts.create($scope.postForm)
+      .then(function(response){
+        $scope.postForm = {};
+        $scope.posts = PostService.all();
+      })
   };
 
   $scope.upvote = function(comment){
-    RatingService.upvote(comment);
+    //CommentService.upvote(comment);
+    console.log("Clicked upvote");
+
   };
 
   $scope.downvote = function(comment){
-    RatingService.downvote(comment);
+    //CommentService.downvote(comment);
+    console.log("Clicked downvote");
+
   }
 
 

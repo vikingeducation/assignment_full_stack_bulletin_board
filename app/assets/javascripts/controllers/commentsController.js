@@ -1,9 +1,9 @@
-App.controller('CommentsCtrl', ['$scope', 'Restangular', '$stateParams', 'RatingService',
-                                function($scope, Restangular, $stateParams, RatingService){
+App.controller('CommentsCtrl', ['$scope', 'Restangular', '$stateParams', 'CommentService',
+                                function($scope, Restangular, $stateParams, CommentService){
   $scope.commentForm = {};
 
 
-  $scope.comments = Restangular.all('comments').getList().$object;
+  $scope.comments = CommentService.all();
 
   $scope.commentPost = function(){
     console.log();
@@ -19,16 +19,13 @@ App.controller('CommentsCtrl', ['$scope', 'Restangular', '$stateParams', 'Rating
     });
   }
 
+  $scope.downvote = function(id){
+    console.log("Clicked downvote");
+  };
 
+  $scope.upvote = function(id){
+    console.log("Clicked upvote");
+  };
 
-  $scope.upvote = function(comment){
-    console.log(comment);
-    RatingService.upvote(comment);
-  }
-
-  $scope.downvote = function(comment){
-    console.log(comment);
-    RatingService.downvote(comment);
-  }
 
 }]);

@@ -11,7 +11,7 @@
 
   <div ui-view="createComment"></div>
 
-  <div ng-repeat="comment in post.comments | orderBy: '-created_at'">
+  <div ng-repeat="comment in post.comments | filter:rating ">
 
     <h2> <span ng-click="downvote(comment)" class="glyphicon glyphicon-arrow-down btn btn-default btn-sm"></span>
          <span ng-click="upvote(comment)" class="glyphicon glyphicon-arrow-up btn btn-default btn-sm"></span>

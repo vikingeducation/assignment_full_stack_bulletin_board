@@ -1,7 +1,7 @@
 <h4>Recent Comments</h4>
-<div ng-repeat="comment in comments | filter:rating " >
-  <h5><span ng-click="downvote(comment)" class="glyphicon glyphicon-arrow-down btn btn-default btn-sm"></span>
-      <span ng-click="upvote(comment)" class="glyphicon glyphicon-arrow-up btn btn-default btn-sm"></span>
+<div ng-repeat="comment in comments | orderBy: '-created_at' | limitTo : 10 " >
+  <h5><span ng-click="downvote(comment.id)" class="glyphicon glyphicon-arrow-down btn btn-default btn-sm"></span>
+      <span ng-click="upvote(comment.id)" class="glyphicon glyphicon-arrow-up btn btn-default btn-sm"></span>
 
     {{ comment.rating }} | {{ comment.author }}</h5>
   <p>Commented on {{ comment.created_at | date}}</p>
