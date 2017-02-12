@@ -1,0 +1,27 @@
+<div class="row">
+<h3>New Post</h3>
+<form name="postform" class="form-group post-form">
+  <label class="col-sm-2 col-form-label form-label">Title:</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="params.title" class="form-control form-control-success">
+  </div>
+  <label class="col-sm-2 col-form-label form-label">Author:</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="params.author" class="form-control form-control-success">
+  </div>
+  <label class="col-sm-2 col-form-label form-label">Body:</label>
+  <div class="col-sm-10">
+    <textarea ng-model="params.body" class="form-control form-control-success"></textarea>
+  </div>
+  <button class="btn btn-primary col-sm-6 col-sm-offset-3" ng-disabled="postform.$invalid" ng-click="createPost(params)">Create Post!</button><br>
+</form>
+</div>
+
+<div class="row">
+<h2>Posts</h2>
+<div ng-repeat="post in posts | orderBy: '-created_at'">
+  <h4><a ui-sref="posts.show({id: post.id})">{{ post.title }}</a></h4>
+  <p>Posted on {{ post.created_at | date }} by {{ post.author }}</p>
+  <hr>
+</div>
+</div>
