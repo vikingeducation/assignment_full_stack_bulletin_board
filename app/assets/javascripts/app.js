@@ -26,7 +26,8 @@ bulletin = angular.module("bulletin", ['ui.router', 'restangular'])
           controller: "postsIndexCtrl"             
         },
         "recent-comments": {
-          templateUrl: '/templates/recentComments.html'
+          templateUrl: '/templates/recentComments.html',
+          controller: "postsIndexCtrl"
         }
       }
 

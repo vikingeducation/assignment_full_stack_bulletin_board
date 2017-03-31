@@ -4,4 +4,6 @@ bulletin.controller("postsIndexCtrl",
 
     $scope.posts = postService.posts();
 
+    $scope.comments = postService.comments();
+
   }])

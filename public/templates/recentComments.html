@@ -1,1 +1,4 @@
-<h1>recent comments template</h1>
+<div ng-repeat="comment in comments | orderBy : '-createdAt' | limitTo : 10 ">
+  <h5 class="text-muted">{{comment.user}} commented:</h6>
+  <p>{{comment.body}}</p>  
+</div>
