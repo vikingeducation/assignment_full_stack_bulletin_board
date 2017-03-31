@@ -1,6 +1,19 @@
+<form name="newPost">
+  <label>Title</label><br>
+  <input type="text" ng-model="newPost.title"><br>
+  <label>User</label><br>
+  <input type="text" ng-model="newPost.title"><br>
+  <label>Body</label><br>
+  <textarea ng-model="newPost.body"></textarea><br>
+
+  <button ng-click="addPost()">Create Post</button>
+
+</form>
+
+
 <div ng-repeat="post in posts">
   <h4><a href="">{{post.title}}</a></h4>
-  <p>by {{post.user}} on {{post.created_at}}</p>
+  <p>by <b>{{post.user}}</b> on {{post.created_at}}</p>
   <p>{{post.body}}</p>
 </div>
 <hr><hr>
