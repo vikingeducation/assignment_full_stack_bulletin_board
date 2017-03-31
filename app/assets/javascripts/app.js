@@ -32,8 +32,17 @@ bulletin = angular.module("bulletin", ['ui.router', 'restangular'])
     })
     .state('posts.show', {
       url: '/:id',
-      templateUrl: "/templates/postsShow.html",
-      controller: "postsCtrl"
+      views: {
+      "@posts": {
+            templateUrl: "/templates/postsShow.html",
+            controller: "postsShowCtrl" }       
+      },
+      resolve: {
+          post: ['Restangular', '$stateParams',
+                  function(Restangular, $stateParams){
+                    return Restangular.one('posts', $stateParams.id).get();
+                }]
+      }
     })
 })
 
