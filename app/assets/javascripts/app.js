@@ -23,11 +23,11 @@ bulletin = angular.module("bulletin", ['ui.router', 'restangular'])
       views: {
         "@posts": {
           templateUrl: '/templates/postsIndex.html',
-          controller: "postsIndexCtrl"             
+          controller: "postsCtrl"             
         },
         "recent-comments": {
           templateUrl: '/templates/recentComments.html',
-          controller: "postsIndexCtrl"
+          controller: "postsCtrl"
         }
       }
 

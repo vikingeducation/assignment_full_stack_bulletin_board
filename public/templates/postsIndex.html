@@ -1,8 +1,10 @@
+<h1>{{posts.length}}</h1>
+
 <form name="newPost">
   <label>Title</label><br>
   <input type="text" ng-model="newPost.title"><br>
   <label>User</label><br>
-  <input type="text" ng-model="newPost.title"><br>
+  <input type="text" ng-model="newPost.user"><br>
   <label>Body</label><br>
   <textarea ng-model="newPost.body"></textarea><br>
 
@@ -11,7 +13,7 @@
 </form>
 
 
-<div ng-repeat="post in posts">
+<div ng-repeat="post in posts | orderBy : '-created_at'">
   <h4><a href="">{{post.title}}</a></h4>
   <p>by <b>{{post.user}}</b> on {{post.created_at}}</p>
   <p>{{post.body}}</p>

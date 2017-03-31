@@ -15,6 +15,16 @@ bulletin.factory("postService",
       return _comments;
     }
 
+    postService.addPost = function(newPost) {
+      console.log('post service adding post')
+      Restangular.all('posts').post({ post: { title: newPost.title,
+                                              user: newPost.user,
+                                              body: newPost.body }})
+                              .then(function(createdPost) {
+                                _posts.push(createdPost);
+                              })
+    }
+
 
     return postService;
 
