@@ -1,4 +1,10 @@
 <div ng-repeat="comment in comments | orderBy : '-createdAt' | limitTo : 10 ">
-  <h5 class="text-muted">{{comment.user}} commented:</h6>
-  <p>{{comment.body}}</p>  
+  <h5 class="text-info">
+    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+    {{comment.votes}}
+    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+    <b>{{comment.user}}</b>
+  </h6>
+  <small>{{comment.created_at}}</small>
+  <p class="text-muted">{{comment.body}}</p>  
 </div>
