@@ -1,8 +1,12 @@
 bulletin = angular.module("bulletin", ['ui.router', 'restangular'])
 
+.config(['RestangularProvider', function(RestangularProvider){
+  RestangularProvider.setBaseUrl('/api/v1');
+  RestangularProvider.setRequestSuffix('.json');
+}])
 
 .config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise("/posts.index")
+  $urlRouterProvider.otherwise("/posts/index")
 
   $stateProvider
     .state('posts', {
@@ -10,9 +14,9 @@ bulletin = angular.module("bulletin", ['ui.router', 'restangular'])
       templateUrl: '/templates/postsLayout.html'
     })
     .state('posts.index', {
-      url: '/posts/index',
+      url: '/index',
       templateUrl: '/templates/postsIndex.html',
-      controller: "PostsIndexCtrl"
+      controller: "postsIndexCtrl"
     })
 })
 
