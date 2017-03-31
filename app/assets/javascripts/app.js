@@ -14,9 +14,12 @@ bulletin = angular.module("bulletin", ['ui.router', 'restangular'])
       views: {
         "": {
           templateUrl: '/templates/postsLayout.html'
+        },
+        "recent-comments": {
+          templateUrl: '/templates/recentComments.html',
+          controller: "postsCtrl"
         }
-      }
-      
+      } 
     })
     .state('posts.index', {
       url: '/index',
@@ -24,13 +27,13 @@ bulletin = angular.module("bulletin", ['ui.router', 'restangular'])
         "@posts": {
           templateUrl: '/templates/postsIndex.html',
           controller: "postsCtrl"             
-        },
-        "recent-comments": {
-          templateUrl: '/templates/recentComments.html',
-          controller: "postsCtrl"
         }
       }
-
+    })
+    .state('posts.show', {
+      url: '/:id',
+      templateUrl: "/templates/postsShow.html",
+      controller: "postsCtrl"
     })
 })
 
