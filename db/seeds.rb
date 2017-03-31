@@ -8,6 +8,7 @@
 
 puts "Clearing db..."
 Post.delete_all
+Comment.delete_all
 puts "DONE"
 
 puts "Creating posts..."
@@ -24,7 +25,8 @@ puts "Creating comments..."
 Post.all.each do |post|
   post.comments.create(
     body: Faker::Hipster.sentence,
-    user: Faker::Book.author
+    user: Faker::Book.author,
+    votes: rand(0..10).to_i
     )
 end
 puts "DONE"
