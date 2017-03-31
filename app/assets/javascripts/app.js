@@ -11,12 +11,25 @@ bulletin = angular.module("bulletin", ['ui.router', 'restangular'])
   $stateProvider
     .state('posts', {
       url: '/posts',
-      templateUrl: '/templates/postsLayout.html'
+      views: {
+        "": {
+          templateUrl: '/templates/postsLayout.html'
+        }
+      }
+      
     })
     .state('posts.index', {
       url: '/index',
-      templateUrl: '/templates/postsIndex.html',
-      controller: "postsIndexCtrl"
+      views: {
+        "@posts": {
+          templateUrl: '/templates/postsIndex.html',
+          controller: "postsIndexCtrl"             
+        },
+        "recent-comments": {
+          templateUrl: '/templates/recentComments.html'
+        }
+      }
+
     })
 })
 
