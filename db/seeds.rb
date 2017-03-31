@@ -13,10 +13,18 @@ puts "DONE"
 puts "Creating posts..."
 20.times do 
   Post.create(
-    title: Faker::Hipster.word,
-    user: Faker::Hipster.word,
+    title: Faker::Book.title,
+    user: Faker::Book.author,
     body: Faker::Hipster.paragraph
     )
 end 
 puts "DONE"
 
+puts "Creating comments..."
+Post.all.each do |post|
+  post.comments.create(
+    body: Faker::Hipster.sentence,
+    user: Faker::Book.author
+    )
+end
+puts "DONE"
