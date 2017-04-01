@@ -7,7 +7,6 @@ bulletin.controller("postsCtrl",
     $scope.comments = postService.comments();
 
     $scope.addPost = function() {
-      console.log('posts ctrl adding post')
       postService.addPost($scope.newPost);
       $scope.newPost = {};
     }

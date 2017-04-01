@@ -1,6 +1,22 @@
 bulletin.factory("postService", 
-  ["Restangular", 
-  function(Restangular) {
+  ["Restangular", "commentService",
+  function(Restangular, commentService) {
+
+    Restangular.extendModel('posts', function(model) {
+      model.createComment = function(params) {
+        params.postID = model.id;
+        console.log(params);
+
+        return commentService.create(params)
+          .then(function(response) {
+            console.log(response);
+            model.comments.push(response);
+            return response;
+          });
+      };
+
+      return model;
+    });
 
     var postService = {};
     var _posts = Restangular.all('posts').getList().$object;
