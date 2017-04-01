@@ -4,6 +4,10 @@ bulletin.factory("commentService",
     var commentService = {};
     var _comments = Restangular.all('comments').getList().$object;
 
+    commentService.refreshAll = function() {
+      return Restangular.all('comments').getList();
+    }
+
     commentService.create = function(newComment) {
       return Restangular.all('comments').post({
         comment: {

@@ -10,5 +10,3 @@ bulletin.controller("postsCtrl",
     }
 
   }])
-
-// refactor into multiple controllers
