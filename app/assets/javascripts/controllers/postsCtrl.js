@@ -4,8 +4,6 @@ bulletin.controller("postsCtrl",
 
     $scope.posts = postService.posts();
 
-    $scope.comments = commentService.comments();
-
     $scope.addPost = function() {
       postService.addPost($scope.newPost);
       $scope.newPost = {};
