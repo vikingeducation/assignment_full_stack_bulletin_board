@@ -2,6 +2,7 @@ bulletin.factory("commentService",
   ["Restangular",
   function(Restangular) {
     var commentService = {};
+    var _comments = Restangular.all('comments').getList().$object;
 
     commentService.create = function(newComment) {
       return Restangular.all('comments').post({
@@ -13,6 +14,11 @@ bulletin.factory("commentService",
         }
       });
     };
+
+    commentService.comments = function() {
+      // console.log(Restangular.all('comments').getList().$object);
+      return _comments;
+    }
 
     return commentService;
 
