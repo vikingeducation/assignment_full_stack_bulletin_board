@@ -21,6 +21,11 @@ bulletin.factory("postService",
     var postService = {};
     var _posts = Restangular.all('posts').getList().$object;
 
+    postService.getPostComments = function(id) {
+      return Restangular.one('posts', id).get();
+      //return Restangular.one('posts', id).all('comments').getList();
+    }
+
     postService.posts = function() {
       return _posts;
     }

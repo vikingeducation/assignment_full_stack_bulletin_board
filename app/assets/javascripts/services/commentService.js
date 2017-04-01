@@ -1,8 +1,42 @@
 bulletin.factory("commentService",
-  ["Restangular",
-  function(Restangular) {
+  ["Restangular", "$rootScope", 
+  function(Restangular, $rootScope) {
+
+    // Restangular.extendModel('comments', function(model) {
+    //   model.upvote = function() {
+    //     this.votes += 1;
+    //     this.put();
+    //   };
+
+    //   model.downvote = function() {
+    //     this.votes -= 1;
+    //     this.put();
+    //   }
+    //   return model;
+    // });
+
     var commentService = {};
     var _comments = Restangular.all('comments').getList().$object;
+
+    commentService.upvote = function(comment) {
+      comment.votes++;
+      commentService.updateVotes(comment);
+    }
+
+    commentService.downvote = function(comment) {
+      comment.votes--;
+      commentService.updateVotes(comment);
+    }
+
+    commentService.updateVotes = function(comment) {
+      return Restangular.one('comments', comment.id)
+                        .customPATCH( comment )
+                        .then( function(response) {
+                          console.log(response)
+                          $rootScope.$broadcast('comment.voted', response);
+                        });      
+    }
+
 
     commentService.refreshAll = function() {
       return Restangular.all('comments').getList();

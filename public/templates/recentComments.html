@@ -1,8 +1,8 @@
 <div ng-repeat="comment in comments | orderBy : '-created_at' | limitTo : 10 ">
   <h5 class="text-info">
-    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+    <span ng-click="upvote(comment)" class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
     {{comment.votes}}
-    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+    <span ng-click="downvote(comment)" class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
     <b>{{comment.user}}</b>
   </h6>
   <small>{{comment.created_at | date}}</small>

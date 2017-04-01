@@ -18,6 +18,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.json { render json: @comment }
+      else
+        format.json { render status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def comment_params
