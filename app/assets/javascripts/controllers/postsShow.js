@@ -1,7 +1,11 @@
 bulletin.controller('postsShowCtrl', 
-  ["$scope", "post",
-  function($scope, post) {
+  ["$scope", "post", "postService",
+  function($scope, post, postService) {
 
     $scope.post = post
-    $scope.showTest = "scoped show test var"
+    $scope.addComment = function() {
+      postService.addComment(newComment);
+    }
+
+
   }])
