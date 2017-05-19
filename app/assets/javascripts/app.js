@@ -19,13 +19,38 @@ app.config( ["$httpProvider", "$stateProvider", "$urlRouterProvider", 'Restangul
   //   .headers
   //   .common['X-CSRF-Token'] = token;
 
-  $urlRouterProvider.otherwise('');
+  $urlRouterProvider.otherwise('/posts/index');
 
   $stateProvider
     .state('posts', {
-      url: 'posts',
-      templateUrl: '/templates/posts/index.html',
-      controller: 'PostsCtrl'
+      url: '/posts',
+      views: {
+        'header': {
+          templateUrl: '/templates/posts/header.html',
+        },
+        'main': {
+          templateUrl: '/templates/posts/main.html',
+        },
+        'recent-comments': {
+          templateUrl: '/templates/posts/recent-comments.html',
+          controller: 'CommentsCtrl'
+        },
+        'posts.index': {
+          // url: '/index',
+          templateUrl: "/templates/posts/index.html",
+          controller: "PostsCtrl"
+        }
+      },
+    })
+    .state('posts.index', {
+      url: '/index',
+      templateUrl: "/templates/posts/index.html",
+      controller: "PostsCtrl"
+    })
+    .state('posts.show', {
+      url: '/show/:id',
+      templateUrl: '/templates/posts/show.html',
+      controller: "PostsCtrl"
     });
 
 

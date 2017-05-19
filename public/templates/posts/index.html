@@ -1,7 +1,13 @@
 <h2>Posts</h2>
 
-
 <div ng-repeat="post in posts">
-  <a href=""><h3>Post Title:{{ post.title }}</h3></a>
+
+  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+    <!-- ng-click=""> -->
+  <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+    <!-- ng-click=""> -->
+  {{ post.author }}
+
+  <a href=""><h3>{{ post.body }}</h3></a>
   <p>Posted on {{ post.created_at | date: 'short' }} by {{ post.author }}</p>
 </div>

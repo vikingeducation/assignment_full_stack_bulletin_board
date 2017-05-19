@@ -1,0 +1,14 @@
+<h2>Recent Comments</h2>
+
+<div ng-repeat="comment in comments">
+  <div class="recent-comment">
+    <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+      <!-- ng-click=""> -->
+    <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+      <!-- ng-click=""> -->
+    {{ comment.score }} | {{ comment.author }}
+    <a href="">{{ comment.title }}</a><br>
+    <p>Posted on {{ comment.created_at | date }}</p>
+    <H4>{{ comment.body }}</H4>
+  </div>
+</div>

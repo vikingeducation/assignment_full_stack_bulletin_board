@@ -2,8 +2,17 @@
   ng-app="app"
 <% end %>
 
-<!-- links to your routes -->
-<a ui-sref="posts">Posts</a>
-<!-- <a ui-sref="route2">Clicking this fills ui-view with route2</a> -->
+<div ui-view="header"></div>
+<a ui-sref="posts.index">Posts</a>
 
-<div ui-view></div>
+<div class="row">
+
+  <div class="col-xs-12 col-sm-5">
+    <div ui-view="recent-comments"></div>
+  </div>
+
+  <div class="col-xs-12 col-sm-7">
+    <div ui-view="posts.index"></div>
+  </div>
+
+</div>

@@ -6,15 +6,49 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-authors_list = [
+AUTHOR_LIST = [
   "Merf",
   "Ferb",
   "Bert",
   "Rupt",
 ]
 
-10.times do |n|
-  author = authors_list.sample
+POST_LIST = []
+
+COMMENT_LIST = [
+  "You make a good point",
+  "Nope",
+  "Delete your account",
+  "I never thought of it that way",
+  "I could not agree more",
+  "You have just won the internet"
+]
+
+
+puts "Destroying posts"
+Post.destroy_all
+puts "Destroying comments"
+Comment.destroy_all
+
+POST_COUNT = 10
+COMMENT_COUNT = 3
+
+puts("Createing Posts")
+POST_COUNT.times do |n|
+  author = AUTHOR_LIST.sample
   body = "bla " * n
-  Post.create(author: author, body: body)
+  title = "Title #{n}"
+  POST_LIST << Post.create(author: author, body: body)
+end
+
+puts("Adding Comments to each post")
+POST_LIST.each do |post|
+  COMMENT_COUNT.times do |n|
+    num = (post.id * n) + 1
+    title = "Comment title #{num}"
+    author = AUTHOR_LIST.sample
+    comment = COMMENT_LIST.sample
+    score = (post.id * n) - 25
+    post.comments.create(title: title, author: author, body: comment, score: score)
+  end
 end
