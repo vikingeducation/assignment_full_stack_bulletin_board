@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+authors_list = [
+  "Merf",
+  "Ferb",
+  "Bert",
+  "Rupt",
+]
+
+10.times do |n|
+  author = authors_list.sample
+  body = "bla " * n
+  Post.create(author: author, body: body)
+end

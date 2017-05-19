@@ -1,0 +1,7 @@
+<h2>Posts</h2>
+
+
+<div ng-repeat="post in posts">
+  <a href=""><h3>Post Title:{{ post.title }}</h3></a>
+  <p>Posted on {{ post.created_at | date: 'short' }} by {{ post.author }}</p>
+</div>
