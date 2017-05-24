@@ -1,0 +1,6 @@
+<h1>{{ post.title }}</h1>
+<h2>By: {{ post.author }}</h2>
+<p>{{ post.created_at | date: 'short' }}</p>
+<div>
+  {{ post.body }}
+</div>

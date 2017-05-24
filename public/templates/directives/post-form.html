@@ -1,0 +1,13 @@
+<form ng-submit="submitPost(newPost.$valid, newPost, newPostForm)" name="newPostForm">
+  <label>
+    Author
+    <input type="text" ng-model="newPost.author" name="author" class="form-control">
+  </label>
+  <br>
+  <label for="post_area_{{ post.id }}">
+    Post
+  </label>
+  <textarea id="post_area_{{ post.id }}" ng-model="newPost.body" name="body" class="form-control"></textarea>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

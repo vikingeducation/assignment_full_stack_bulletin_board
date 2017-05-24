@@ -1,0 +1,18 @@
+<%= content_for :angular_app do %>
+  ng-app="app"
+<% end %>
+
+<div ui-view="header"></div>
+<a ui-sref="posts.index">Posts</a>
+
+<div class="row">
+
+  <div class="col-xs-12 col-sm-5">
+    <div ui-view="recent-comments"></div>
+  </div>
+
+  <div class="col-xs-12 col-sm-7">
+    <div ui-view="posts.index"></div>
+  </div>
+
+</div>
