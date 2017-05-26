@@ -9,11 +9,11 @@ MyApp.factory('_', ['$window', function($window) {
 MyApp.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
-    .state('default', {
+    .state('posts', {
       url: '',
       views: {
         "": {
-          template: 'Angular reporting in'
+          templateUrl: '/templates/posts/index.html'
         }
       }
     })

@@ -7,6 +7,7 @@ end
 
 gem 'angularjs-rails'
 gem 'angular_rails_csrf'
+gem 'faker'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
