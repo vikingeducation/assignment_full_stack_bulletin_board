@@ -1,4 +1,14 @@
-<h1>Index Page!</h1>
 
-<div ui-view></div>
+<div class="container">
+  <div class="row">
 
+    <div class="col-xs-6">
+      <div ui-view="recentComments"></div>
+    </div>
+
+    <div class="col-xs-6">
+      <div ui-view="postsIndexPanel"></div>
+    </div>
+
+  </div>
+</div>

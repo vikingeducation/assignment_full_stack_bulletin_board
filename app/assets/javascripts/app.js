@@ -18,12 +18,21 @@ MyApp.config(
 MyApp.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
-    .state('posts', {
+    .state('homepage', {
       url: '',
       views: {
-        "": {
+        "postsIndexPanel": {
           templateUrl: '/templates/posts/index.html',
           controller: 'PostsIndexCtrl'
+          // resolve: {
+          //   posts: ['Restangular', function(Restangular){
+          //     return Restangular.all('posts').getList();
+          //   }]
+          // }
+        },
+        "recentComments": {
+          templateUrl: '/templates/comments/index.html',
+          controller: 'CommentsIndexCtrl'
         }
       }
     })
