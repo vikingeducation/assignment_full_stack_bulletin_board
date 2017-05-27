@@ -1,6 +1,5 @@
-MyApp.controller('PostsIndexCtrl', ['$scope', 'Restangular',  function($scope, Restangular){
+MyApp.controller('PostsIndexCtrl', ['$scope', 'PostService',  function($scope, PostService){
 
-  $scope.posts = Restangular.all('posts').getList().$object;
-
+  $scope.posts = PostService.posts;
 
 }]);

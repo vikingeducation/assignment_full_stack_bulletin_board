@@ -1,5 +1,5 @@
-MyApp.controller('CommentsIndexCtrl', ['$scope', 'Restangular',  function($scope, Restangular){
+MyApp.controller('CommentsIndexCtrl', ['$scope', 'CommentService',  function($scope, CommentService){
 
-  $scope.comments = Restangular.all('comments').getList().$object;
+  $scope.comments = CommentService.comments;
 
 }]);
