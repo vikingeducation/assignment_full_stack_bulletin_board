@@ -1,10 +1,21 @@
 <h2>Recent Comments</h2>
 <hr>
-<div ng-repeat="comment in comments | limitTo : 5">
-  <h4>{{ comment.score }} | {{ comment.author }}</h4>
+<div ng-repeat="comment in comments | orderBy: '-' ">
+
+  <h4>
+    <button class="btn btn-xs btn-success glyphicon glyphicon-thumbs-up" ng-click="">
+    </button>
+
+    <button class="btn btn-xs btn-danger glyphicon glyphicon-thumbs-down" ng-click="">
+    </button>
+
+    {{ comment.score }} | {{ comment.author }}
+  </h4>
+
   <p>
     Commented on {{ comment.created_at | date }} "{{ comment.body }}"
   </p>
+  <hr>
 </div>
 
 
