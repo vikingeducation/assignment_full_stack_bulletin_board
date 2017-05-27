@@ -5,6 +5,15 @@ MyApp.factory('_', ['$window', function($window) {
   return $window._;
 }]);
 
+MyApp.config(
+  ['RestangularProvider',
+  function(RestangularProvider) {
+
+    RestangularProvider.setBaseUrl('/api/v1');
+    RestangularProvider.setRequestSuffix('.json');
+
+  }]);
+
 
 MyApp.config(function($stateProvider, $urlRouterProvider) {
 
@@ -13,10 +22,14 @@ MyApp.config(function($stateProvider, $urlRouterProvider) {
       url: '',
       views: {
         "": {
-          templateUrl: '/templates/posts/index.html'
+          templateUrl: '/templates/posts/index.html',
+          controller: 'PostsIndexCtrl'
         }
       }
     })
+
+  // $urlRouterProvider.otherwise('');
+
 
 });
 

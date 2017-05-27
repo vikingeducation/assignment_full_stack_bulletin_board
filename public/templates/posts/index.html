@@ -1,1 +1,10 @@
 public/templates/posts/index.html
+
+<h2>Posts</h2>
+
+<div ng-repeat="post in posts">
+  <h3>{{ post.title }}</h3>
+  <p>
+    Posted on {{ post.created_at | date }} by {{ post.author }}
+  </p>
+</div>
