@@ -8,10 +8,11 @@ MyApp.factory('CommentService', ['Restangular', function(Restangular){
       comment: {
         author: params.author,
         body: params.body,
-        post_id: params.postId
+        score: 0,
+        post_id: params.id
       }
-    });
-  };
+    })
+  }
 
   return service;
 }]);

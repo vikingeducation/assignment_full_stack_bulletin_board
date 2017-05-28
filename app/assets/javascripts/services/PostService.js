@@ -13,6 +13,14 @@ MyApp.factory('PostService', ['Restangular', 'CommentService', function(Restangu
     })
   };
 
+  Restangular.extendModel('posts', function(model){
+    model.createComment = function(params){
+      params.id = model.id;
+      return CommentService.createComment(params);
+    }
+      return model;
+  });
+
   // Restangular.extendModel('posts', function(model){
   //   model.createComment = function(params) {
   //     params.postId = model.id;
