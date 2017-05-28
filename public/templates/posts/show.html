@@ -1,6 +1,4 @@
 Posts Show Page.html!!!!!!!!!!!!
-{{ post }}
-<hr>
 
 <h2>{{ post.title }}</h2>
 
@@ -8,4 +6,4 @@ Posts Show Page.html!!!!!!!!!!!!
   {{ post.body }}
 </p>
 
-<h6>Posted on {{ post.created_at }} by {{ post.author }}</h6>
+<h6>Posted on {{ post.created_at | date }} by {{ post.author }}</h6>
