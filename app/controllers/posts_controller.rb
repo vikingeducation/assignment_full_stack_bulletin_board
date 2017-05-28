@@ -5,18 +5,16 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @posts.to_json(include: :comments) }
-      # format.json { render json: @posts }
     end
   end
 
-  # def show
-  #   @post = Post.find( params[:id] )
+  def show
+    @post = Post.find(params[:id])
 
-  #   respond_to do |format|
-  #     format.json { render: @post(include: :comments)}
-  #   end
-
-  # end
+    respond_to do |format|
+      format.json { render json: @post.to_json }
+    end
+  end
 
   def create
     @post = Post.new( post_params )

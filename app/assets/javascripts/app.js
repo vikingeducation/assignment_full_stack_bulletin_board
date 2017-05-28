@@ -32,13 +32,17 @@ MyApp.config(function($stateProvider, $urlRouterProvider) {
       }
     })
 
-    // .state('posts.show', {
-    //   url: '/:id',
-    //   templateUrl: '/templates/posts/show.html',
-    //   controller: 'PostsShowCtrl'
-    // })
+    .state('posts.show', {
+      url: "/:id",
+      views: {
+        "@": {
+        templateUrl: '/templates/posts/show.html',
+        controller: 'PostsShowCtrl'
+        }
+      }
+    })
 
-  // $urlRouterProvider.otherwise('');
+  $urlRouterProvider.otherwise('');
 
 
 });

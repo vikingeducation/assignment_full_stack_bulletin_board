@@ -1,7 +1,5 @@
-// MyApp.controller('PostsIndexCtrl', ['$scope', '$stateParams' 'PostService',  function($scope, PostService, $stateParams){
+MyApp.controller('PostsShowCtrl', ['$scope',  'Restangular', '$stateParams',  function($scope, Restangular, $stateParams){
 
-//   // $scope.post = Restangular.one('posts', $stateParams.id).get();
-//   console.log($stateParams)
+  $scope.post = Restangular.one('posts', $stateParams.id).get().$object;
 
-
-// }]);
+}]);
