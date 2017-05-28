@@ -35,7 +35,7 @@ MyApp.config(function($stateProvider, $urlRouterProvider) {
     .state('posts.show', {
       url: "/:id",
       views: {
-        "@": {
+        "postsIndexPanel@": {
         templateUrl: '/templates/posts/show.html',
         controller: 'PostsShowCtrl'
         }

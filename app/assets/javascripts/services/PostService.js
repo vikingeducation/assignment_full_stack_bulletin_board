@@ -1,4 +1,4 @@
-MyApp.factory('PostService', ['Restangular', function(Restangular){
+MyApp.factory('PostService', ['Restangular', 'CommentService', function(Restangular, CommentService){
 
   var service = {};
   service.posts = Restangular.all('posts').getList().$object;
@@ -12,6 +12,23 @@ MyApp.factory('PostService', ['Restangular', function(Restangular){
       }
     })
   };
+
+  // Restangular.extendModel('posts', function(model){
+  //   model.createComment = function(params) {
+  //     params.postId = model.id;
+  //     console.log(params, 'PostService.js')
+
+  //     return CommentService.createComment(params)
+  //       .then(function(response){
+  //         console.log('pushing this response')
+  //         model.comments.push( response );
+  //         return response
+  //       })
+  //   }
+  //     return model;
+  // })
+
+
 
   return service;
 }]);
