@@ -1,9 +1,41 @@
 <h2>Posts</h2>
 <hr>
-<div ng-repeat="post in posts">
-  <h3>{{ post.title }}</h3>
+
+<!-- post form -->
+<form name="postForm" ng-submit="createPost(post)">
+  <h3>Create Post</h3>
+
+  <h4>Title</h4>
+  <input type="text" ng-model="post.title">
+
+  <h4>Post</h4>
+  <input type="text" ng-model="post.body">
+
+  <h4>Author</h4>
+  <textarea ng-model="post.author"></textarea>
+
+  <br><br>
+
+  <button type="submit" class="btn btn-sm btn-primary">
+    Submit
+  </button>
+</form>
+
+
+
+
+<!-- posts  -->
+<div ng-repeat="post in posts | orderBy: '-' ">
+  <!-- <a ui-sref="posts.show({id: post.id})"> -->
+  <a ui-sref="posts.show">
+    <h3>{{ post.title }}</h3>
+  </a>
+
   <p>
-    Posted on {{ post.created_at | date }} by {{ post.author }}
+    {{ post.body }}
   </p>
 
+  <h6>
+    Posted on {{ post.created_at | date }} by {{ post.author }}
+  </h6>
 </div>

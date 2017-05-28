@@ -9,4 +9,31 @@ class PostsController < ApplicationController
     end
   end
 
+  # def show
+  #   @post = Post.find( params[:id] )
+
+  #   respond_to do |format|
+  #     format.json { render: @post(include: :comments)}
+  #   end
+
+  # end
+
+  def create
+    @post = Post.new( post_params )
+    respond_to do |format|
+      if @post.save
+        format.json { render json: @post }
+      else
+        format.json { render status: :unprocessable_entity }
+      end
+    end
+  end
+
+  private
+
+    def post_params
+      params.require(:post).permit(:author, :body, :title)
+    end
+
+
 end

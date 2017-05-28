@@ -18,17 +18,12 @@ MyApp.config(
 MyApp.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
-    .state('homepage', {
+    .state('posts', {
       url: '',
       views: {
         "postsIndexPanel": {
           templateUrl: '/templates/posts/index.html',
           controller: 'PostsIndexCtrl'
-          // resolve: {
-          //   posts: ['Restangular', function(Restangular){
-          //     return Restangular.all('posts').getList();
-          //   }]
-          // }
         },
         "recentComments": {
           templateUrl: '/templates/comments/index.html',
@@ -36,6 +31,12 @@ MyApp.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+
+    // .state('posts.show', {
+    //   url: '/:id',
+    //   templateUrl: '/templates/posts/show.html',
+    //   controller: 'PostsShowCtrl'
+    // })
 
   // $urlRouterProvider.otherwise('');
 
