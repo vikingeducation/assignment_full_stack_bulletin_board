@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+
+  <nav>
+  <a ui-sref="posts">
+    Home
+  </a>
+  </nav>
+
+  <!-- Comments -->
+    <div class="col-xs-6">
+      <div ui-view="recentComments"></div>
+    </div>
+
+    <!-- Posts -->
+    <div class="col-xs-6">
+      <div ui-view="postsIndexPanel"></div>
+    </div>
+
+  </div>
+</div>
