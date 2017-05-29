@@ -12,7 +12,8 @@ MyApp.factory('CommentService', ['Restangular', function(Restangular){
         post_id: params.id
       }
     })
-  }
+  };
+
 
   return service;
 }]);

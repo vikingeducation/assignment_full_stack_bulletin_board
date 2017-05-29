@@ -32,12 +32,14 @@ Posts Show Page.html!!!!!!!!!!!!
 </form>
 
 <hr>
+sigh
+{{ sigh }}
 
 <!-- comments -->
 <div ng-repeat="comment in post.comments | orderBy: '-score' ">
 
   <h4>
-    <button class="btn btn-xs btn-success glyphicon glyphicon-thumbs-up" ng-click="">
+    <button class="btn btn-xs btn-success glyphicon glyphicon-thumbs-up" ng-click="updateScore( comment.id )">
     </button>
 
     <button class="btn btn-xs btn-danger glyphicon glyphicon-thumbs-down" ng-click="">
