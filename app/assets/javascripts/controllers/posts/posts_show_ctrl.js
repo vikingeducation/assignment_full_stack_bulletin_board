@@ -1,4 +1,4 @@
-MyApp.controller('PostsShowCtrl', ['$scope',  'Restangular', '$stateParams', 'PostService', function($scope, Restangular, $stateParams, PostService){
+MyApp.controller('PostsShowCtrl', ['$scope',  'Restangular', '$stateParams', 'PostService', 'CommentService', '$rootScope', function($scope, Restangular, $stateParams, PostService, CommentService, $rootScope){
 
   $scope.post = Restangular.one('posts', $stateParams.id).get().$object;
 
@@ -10,21 +10,21 @@ MyApp.controller('PostsShowCtrl', ['$scope',  'Restangular', '$stateParams', 'Po
     })
   };
 
-  Restangular.extendModel('comments', function(model){
-    model.updateScore = function(){
-      model.score++;
-      model.put();
-      console.log('model.updateScore!', '234234')
-    }
-    return model;
-  });
 
-  $scope.updateScore = function(commentId){
+  $scope.updateScore = function(commentId, increment){
     Restangular.one('comments', commentId).get()
       .then(function(comment){
-        comment.updateScore();
+        comment.updateScore(increment)
+        $rootScope.$broadcast('comment.updated');
       })
   };
+
+  $scope.$on('comment.updated', function(){
+      Restangular.one('posts', $stateParams.id).get()
+        .then(function(response){
+          angular.copy(response, $scope.post)
+        })
+  })
 
   // $scope.createCommentTest = function(params) {
   //   console.log('params!', params)

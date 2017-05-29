@@ -14,4 +14,5 @@ MyApp.controller('PostsIndexCtrl', ['$scope', 'PostService',  function($scope, P
     })
   };
 
+
 }]);
